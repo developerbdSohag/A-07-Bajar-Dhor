@@ -6,8 +6,8 @@
 
 ## 🌐 লাইভ ডেমো ও রিপোজিটরি (Live Link & Repository)
 
-- **লাইভ লিংক (Live Link):** [https://bazardor-bd.vercel.app](https://bazardor-bd.vercel.app)
-- **গিটহাব রিপোজিটরি (GitHub Repo):** [https://github.com/username/b14-a7-bazardor](https://github.com/username/b14-a7-bazardor)
+- **লাইভ লিংক (Live Link):** [https://a-07-bajar-dhor.vercel.app](https://a-07-bajar-dhor.vercel.app)
+- **গিটহাব রিপোজিটরি (GitHub Repo):** [https://github.com/developerbdSohag/A-07-Bajar-Dhor](https://github.com/developerbdSohag/A-07-Bajar-Dhor)
 
 ---
 

@@ -195,8 +195,8 @@ Deploy your project on Vercel, Netlify, Cloudflare Pages, or anywhere else befor
 ## 📬 Submission
 Fill in both links before submitting:
 
-- Live Link:
-- GitHub Repository Link:
+- Live Link: https://a-07-bajar-dhor.vercel.app
+- GitHub Repository Link: https://github.com/developerbdSohag/A-07-Bajar-Dhor
 
 
 ### Notes : You can use Bengali or English language for core website information or any kind of text.

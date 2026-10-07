@@ -77,8 +77,28 @@ db.exec(`
   );
 `);
 
+function getBaseUrl() {
+  if (process.env.BETTER_AUTH_URL) {
+    return process.env.BETTER_AUTH_URL;
+  }
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  if (process.env.VERCEL_URL) {
+    return `https://${process.env.VERCEL_URL}`;
+  }
+  if (process.env.NODE_ENV === "production") {
+    return "https://a-07-bajar-dhor.vercel.app";
+  }
+  return "http://localhost:3000";
+}
+
 // Build comprehensive list of trusted local and deployed origins
 const trustedOrigins: string[] = [
+  "https://a-07-bajar-dhor.vercel.app",
+  "https://*.vercel.app",
+  "http://localhost:*",
+  "http://127.0.0.1:*",
   "http://localhost:3000",
   "http://localhost:3001",
   "http://localhost:3002",
@@ -99,18 +119,20 @@ if (process.env.BETTER_AUTH_URL) {
 if (process.env.VERCEL_URL) {
   trustedOrigins.push(`https://${process.env.VERCEL_URL}`);
 }
+if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+  trustedOrigins.push(`https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`);
+}
 
 export const auth = betterAuth({
   database: db,
   secret:
     process.env.BETTER_AUTH_SECRET ||
     "bazardor_ultra_secure_secret_key_32_chars_long",
-  baseURL:
-    process.env.BETTER_AUTH_URL ||
-    (process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}`
-      : "http://localhost:3000"),
+  baseURL: getBaseUrl(),
   trustedOrigins,
+  advanced: {
+    disableCSRFCheck: true,
+  },
   emailAndPassword: {
     enabled: true,
   },

@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 160" role="img" aria-label="বাজারের ঝুড়ি">
+  <ellipse cx="100" cy="142" rx="70" ry="10" fill="#000" opacity="0.08"/>
+  <path d="M45 95 L155 95 L142 140 Q140 146 133 146 L67 146 Q60 146 58 140 Z" fill="#b45309"/>
+  <path d="M45 95 L155 95 L152 108 L48 108 Z" fill="#92400e"/>
+  <path d="M62 108 L66 140 M84 108 L85 142 M106 108 L106 142 M128 108 L125 140 M148 108 L143 139" stroke="#78350f" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="75" cy="72" r="20" fill="#ef4444"/>
+  <path d="M75 52 q4 -8 12 -10" stroke="#16a34a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="68" cy="66" rx="5" ry="8" fill="#fca5a5" opacity="0.7"/>
+  <circle cx="118" cy="66" r="22" fill="#22c55e"/>
+  <path d="M118 44 q2 -10 10 -14 M118 44 q-4 -10 -12 -12" stroke="#15803d" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <ellipse cx="110" cy="60" rx="5" ry="8" fill="#bbf7d0" opacity="0.8"/>
+  <ellipse cx="142" cy="82" rx="14" ry="11" fill="#f59e0b"/>
+  <path d="M142 71 q3 -6 9 -7" stroke="#16a34a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <ellipse cx="58" cy="84" rx="13" ry="10" fill="#a855f7"/>
+  <path d="M58 74 q2 -6 8 -8" stroke="#16a34a" stroke-width="4" fill="none" stroke-linecap="round"/>
+  <ellipse cx="98" cy="80" rx="13" ry="10" fill="#f97316"/>
+  <path d="M98 70 q3 -6 9 -7" stroke="#16a34a" stroke-width="4" fill="none" stroke-linecap="round"/>
+</svg>

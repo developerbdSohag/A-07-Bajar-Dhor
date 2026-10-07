@@ -60,9 +60,9 @@ function SignUpForm() {
         setErrorMessage(msg);
         toast.error(msg);
       } else {
-        toast.success("অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে! অনুগ্রহ করে সাইন ইন করুন।");
-        // Redirect to signin as per requirement
-        router.push(`/signin${callbackUrl !== "/" ? `?callbackURL=${encodeURIComponent(callbackUrl)}` : ""}`);
+        toast.success("অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে!");
+        router.push(callbackUrl);
+        router.refresh();
       }
     } catch (err: any) {
       const msg = err?.message || "রেজিস্ট্রেশন করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।";

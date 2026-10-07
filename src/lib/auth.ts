@@ -77,6 +77,29 @@ db.exec(`
   );
 `);
 
+// Build comprehensive list of trusted local and deployed origins
+const trustedOrigins: string[] = [
+  "http://localhost:3000",
+  "http://localhost:3001",
+  "http://localhost:3002",
+  "http://localhost:3003",
+  "http://localhost:3004",
+  "http://localhost:3005",
+  "http://127.0.0.1:3000",
+  "http://127.0.0.1:3001",
+  "http://127.0.0.1:3002",
+  "http://127.0.0.1:3003",
+  "http://127.0.0.1:3004",
+  "http://127.0.0.1:3005",
+];
+
+if (process.env.BETTER_AUTH_URL) {
+  trustedOrigins.push(process.env.BETTER_AUTH_URL);
+}
+if (process.env.VERCEL_URL) {
+  trustedOrigins.push(`https://${process.env.VERCEL_URL}`);
+}
+
 export const auth = betterAuth({
   database: db,
   secret:
@@ -87,6 +110,7 @@ export const auth = betterAuth({
     (process.env.VERCEL_URL
       ? `https://${process.env.VERCEL_URL}`
       : "http://localhost:3000"),
+  trustedOrigins,
   emailAndPassword: {
     enabled: true,
   },

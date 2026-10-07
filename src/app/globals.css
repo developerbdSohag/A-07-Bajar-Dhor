@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Price ticker strip */
+.ticker-track {
+  width: max-content;
+  animation: ticker-scroll 45s linear infinite;
+  display: flex;
+}
+
+.ticker:focus-within .ticker-track,
+.ticker:hover .ticker-track {
+  animation-play-state: paused;
+}
+
+@keyframes ticker-scroll {
+  0% {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-50%, 0, 0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ticker-track {
+    flex-wrap: wrap;
+    width: auto;
+    animation: none;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Price change colors in consumer market context */
+.price-up {
+  color: #ef4444; /* error / red */
+}
+
+.price-down {
+  color: #22c55e; /* success / green */
+}
+
+.price-flat {
+  color: currentColor;
+}

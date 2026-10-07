@@ -1,0 +1,57 @@
+"use client";
+
+import Link from "next/link";
+import { Product } from "@/types";
+import { formatBengaliNumber, formatUnit, getChangeClass, getChangeIcon } from "@/lib/format";
+
+interface PriceTickerProps {
+  products: Product[];
+}
+
+export default function PriceTicker({ products }: PriceTickerProps) {
+  if (!products || products.length === 0) return null;
+
+  // Duplicate items for continuous seamless loop
+  const displayItems = [...products, ...products];
+
+  return (
+    <div
+      className="ticker overflow-hidden border-b border-base-300 bg-base-100"
+      role="marquee"
+      aria-label="আজকের দাম পরিবর্তনের তালিকা"
+    >
+      <div className="ticker-track">
+        <ul className="flex shrink-0 items-center">
+          {displayItems.map((prod, idx) => {
+            const changeClass = getChangeClass(prod.change.dir);
+            const changeIcon = getChangeIcon(prod.change.dir);
+            const changePct = formatBengaliNumber(Math.abs(prod.change.pct), 1);
+            const todayPrice = formatBengaliNumber(prod.today);
+            const unit = formatUnit(prod.unit);
+
+            return (
+              <li
+                key={`${prod.slug || prod.id}-${idx}`}
+                className="flex items-center gap-1.5 border-e border-base-200 px-4 py-2 text-sm whitespace-nowrap"
+              >
+                <Link
+                  href={`/product/${prod.slug || prod.id}`}
+                  className="flex items-center gap-1.5 hover:underline"
+                >
+                  <span aria-hidden="true">{prod.image || prod.categoryIcon}</span>
+                  <span className="font-medium">{prod.nameBn}</span>
+                  <span className="text-base-content/70">
+                    {todayPrice} টাকা/{unit}
+                  </span>
+                  <span className={`font-semibold ${changeClass}`}>
+                    {changeIcon} {changePct}%
+                  </span>
+                </Link>
+              </li>
+            );
+          })}
+        </ul>
+      </div>
+    </div>
+  );
+}

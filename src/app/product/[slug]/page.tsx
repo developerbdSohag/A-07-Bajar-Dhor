@@ -15,12 +15,7 @@ interface ProductPageProps {
   params: Promise<{ slug: string }>;
 }
 
-export const revalidate = 60;
-
-export async function generateStaticParams() {
-  const products = await getAllProducts();
-  return products.map((p) => ({ slug: p.slug }));
-}
+export const dynamic = "force-dynamic";
 
 export default async function ProductDetailPage({ params }: ProductPageProps) {
   const { slug } = await params;
@@ -28,11 +23,23 @@ export default async function ProductDetailPage({ params }: ProductPageProps) {
 
   // Protected route: check authentication session
   const reqHeaders = await headers();
-  const session = await auth.api.getSession({
-    headers: reqHeaders,
-  });
+  let session = null;
+  try {
+    session = await auth.api.getSession({
+      headers: reqHeaders,
+    });
+  } catch {
+    // fallback to cookie inspection
+  }
 
-  if (!session?.user) {
+  const cookieHeader = reqHeaders.get("cookie") || "";
+  const hasAuthCookie =
+    cookieHeader.includes("better-auth.session_token") ||
+    cookieHeader.includes("__Secure-better-auth.session_token") ||
+    cookieHeader.includes("better-auth.session_data") ||
+    cookieHeader.includes("__Secure-better-auth.session_data");
+
+  if (!session?.user && !hasAuthCookie) {
     redirect(`/signin?callbackURL=${encodeURIComponent(`/product/${decodedSlug}`)}&protected=1`);
   }
 

@@ -37,8 +37,7 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
     try {
       await signOut();
       toast.success("সফলভাবে সাইন আউট হয়েছেন।");
-      router.push("/");
-      router.refresh();
+      window.location.href = "/";
     } catch {
       toast.error("সাইন আউট করতে সমস্যা হয়েছে।");
     }

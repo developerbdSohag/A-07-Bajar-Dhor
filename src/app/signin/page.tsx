@@ -2,21 +2,28 @@
 
 import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { signIn } from "@/lib/auth-client";
 
 function SignInForm() {
-  const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackURL") || "/";
   const isProtected = searchParams.get("protected") === "1";
+  const isRegistered = searchParams.get("registered") === "1";
+  const initialEmail = searchParams.get("email") || "";
 
-  const [email, setEmail] = useState("");
+  const [email, setEmail] = useState(initialEmail);
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [socialLoading, setSocialLoading] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    if (initialEmail && !email) {
+      setEmail(initialEmail);
+    }
+  }, [initialEmail, email]);
 
   useEffect(() => {
     if (isProtected) {
@@ -25,7 +32,10 @@ function SignInForm() {
         duration: 4000,
       });
     }
-  }, [isProtected]);
+    if (isRegistered) {
+      toast.success("অ্যাকাউন্ট তৈরি হয়েছে! সাইন ইন করুন।");
+    }
+  }, [isProtected, isRegistered]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,7 +50,7 @@ function SignInForm() {
     setLoading(true);
     try {
       const res = await signIn.email({
-        email,
+        email: email.trim(),
         password,
       });
 
@@ -50,8 +60,8 @@ function SignInForm() {
         toast.error(msg);
       } else {
         toast.success("সফলভাবে সাইন ইন হয়েছে!");
-        router.push(callbackUrl);
-        router.refresh();
+        // Hard navigate so fresh cookies are immediately transmitted to server components
+        window.location.href = callbackUrl;
       }
     } catch (err: any) {
       const msg = err?.message || "সাইন ইন করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।";
@@ -60,6 +70,13 @@ function SignInForm() {
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleFillDemo = (demoEmail: string, demoPass: string) => {
+    setEmail(demoEmail);
+    setPassword(demoPass);
+    setErrorMessage("");
+    toast.success("ডেমো অ্যাকাউন্টের তথ্য পূরণ করা হয়েছে!");
   };
 
   const handleSocialLogin = async (provider: "google" | "github") => {
@@ -85,7 +102,7 @@ function SignInForm() {
   };
 
   return (
-    <div className="mx-auto flex w-full max-w-md flex-col justify-center px-4 py-12">
+    <div className="mx-auto flex w-full max-w-md flex-col justify-center px-4 py-10">
       <div className="rounded-2xl border border-base-300 bg-base-100 p-6 sm:p-8 shadow-sm">
         <header className="mb-6 text-center">
           <span className="text-4xl select-none" aria-hidden="true">
@@ -96,6 +113,20 @@ function SignInForm() {
             আপনার অ্যাকাউন্টে প্রবেশ করে বাজার দর দেখুন
           </p>
         </header>
+
+        {isRegistered && (
+          <div className="alert alert-success text-sm mb-4 py-2.5 rounded-lg flex items-center gap-2">
+            <span>✓</span>
+            <span>অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে! নিচে পাসওয়ার্ড দিয়ে সাইন ইন করুন।</span>
+          </div>
+        )}
+
+        {isProtected && (
+          <div className="alert alert-warning text-sm mb-4 py-2.5 rounded-lg flex items-center gap-2">
+            <span>🔒</span>
+            <span>পণ্যের বিস্তারিত দেখতে অনুগ্রহ করে সাইন ইন করুন।</span>
+          </div>
+        )}
 
         {errorMessage && (
           <div className="alert alert-error text-sm mb-4 py-2 rounded-lg">
@@ -141,6 +172,26 @@ function SignInForm() {
               "সাইন ইন"
             )}
           </button>
+
+          {/* Quick Demo Credentials for Fast Testing */}
+          <div className="mt-2 rounded-xl border border-primary/20 bg-primary/5 p-3 text-xs text-base-content/80">
+            <div className="flex items-center justify-between mb-1">
+              <span className="font-semibold text-primary">পরীক্ষার জন্য ডেমো অ্যাকাউন্ট:</span>
+              <button
+                type="button"
+                onClick={() => handleFillDemo("demo@bazardor.com", "Password123!")}
+                className="btn btn-xs btn-primary btn-outline"
+              >
+                স্বয়ংক্রিয় পূরণ
+              </button>
+            </div>
+            <p>
+              ইমেইল: <code className="font-mono font-medium">demo@bazardor.com</code>
+            </p>
+            <p>
+              পাসওয়ার্ড: <code className="font-mono font-medium">Password123!</code>
+            </p>
+          </div>
 
           <div className="divider my-1 text-xs text-base-content/60">অথবা</div>
 

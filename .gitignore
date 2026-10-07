@@ -35,8 +35,7 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# database
-*.db
+# database temporary locks
 *.db-journal
 *.db-wal
 *.db-shm

@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { updateUser, useSession } from "@/lib/auth-client";
+import ChangePasswordForm from "@/components/ChangePasswordForm";
 
 interface UserInfo {
   name: string;
@@ -267,6 +268,9 @@ export default function UpdateProfileClient({ user }: { user: UserInfo }) {
           </div>
         </form>
       </div>
+
+      {/* Change Password Card */}
+      <ChangePasswordForm />
     </div>
   );
 }

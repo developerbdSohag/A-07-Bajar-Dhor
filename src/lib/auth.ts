@@ -1,4 +1,5 @@
 import { betterAuth } from "better-auth";
+import { hashPassword, verifyPassword } from "better-auth/crypto";
 import Database from "better-sqlite3";
 import path from "path";
 import fs from "fs";
@@ -330,5 +331,99 @@ export const auth = betterAuth({
     },
   },
 });
+
+export async function verifyUserCurrentPassword(
+  userId: string,
+  currentPassword: string
+): Promise<boolean> {
+  await syncFromRemoteRegistry();
+  const account = db
+    .prepare(
+      `SELECT * FROM account WHERE (userId = ? OR accountId = ?) AND providerId = 'credential'`
+    )
+    .get(userId, userId) as any;
+
+  if (!account || !account.password) {
+    return false;
+  }
+
+  return await verifyPassword({
+    hash: account.password,
+    password: currentPassword,
+  });
+}
+
+export async function updatePasswordInDbAndRegistry(
+  userId: string,
+  newPasswordPlain: string
+): Promise<void> {
+  const newHashedPassword = await hashPassword(newPasswordPlain);
+  const now = new Date().toISOString();
+
+  // 1. Update local SQLite DB
+  const existing = db
+    .prepare(
+      `SELECT * FROM account WHERE (userId = ? OR accountId = ?) AND providerId = 'credential'`
+    )
+    .get(userId, userId) as any;
+
+  if (existing) {
+    db.prepare(
+      `UPDATE account SET password = ?, updatedAt = ? WHERE id = ?`
+    ).run(newHashedPassword, now, existing.id);
+  } else {
+    db.prepare(
+      `INSERT INTO account (id, accountId, providerId, userId, password, createdAt, updatedAt) VALUES (?, ?, 'credential', ?, ?, ?, ?)`
+    ).run(`acc_${userId}`, userId, userId, newHashedPassword, now, now);
+  }
+
+  // 2. Update remote registry for cross-lambda serverless synchronization
+  try {
+    const getRes = await fetch(
+      `https://api.restful-api.dev/objects/${REGISTRY_ID}`
+    );
+    if (getRes.ok) {
+      const current = await getRes.json();
+      const users = Array.isArray(current.data?.users)
+        ? current.data.users
+        : [];
+      let accounts = Array.isArray(current.data?.accounts)
+        ? current.data.accounts
+        : [];
+
+      let updated = false;
+      accounts = accounts.map((a: any) => {
+        if (a.userId === userId || a.accountId === userId) {
+          updated = true;
+          return { ...a, password: newHashedPassword, updatedAt: now };
+        }
+        return a;
+      });
+
+      if (!updated) {
+        accounts.push({
+          id: `acc_${userId}`,
+          accountId: userId,
+          providerId: "credential",
+          userId,
+          password: newHashedPassword,
+          createdAt: now,
+          updatedAt: now,
+        });
+      }
+
+      await fetch(`https://api.restful-api.dev/objects/${REGISTRY_ID}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: "bazardor_users_registry_v1",
+          data: { users, accounts },
+        }),
+      });
+    }
+  } catch {
+    // Non-blocking sync
+  }
+}
 
 export { syncFromRemoteRegistry };

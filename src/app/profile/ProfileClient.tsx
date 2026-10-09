@@ -1,5 +1,6 @@
 "use client";
 
+import ChangePasswordForm from "@/components/ChangePasswordForm";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -261,6 +262,13 @@ export default function ProfileClient({ user }: { user: UserInfo }) {
             <span>✏️ তথ্য পরিবর্তন করুন</span>
           </Link>
 
+          <a
+            href="#password-section"
+            className="inline-flex items-center justify-center gap-1.5 rounded-full border border-base-300 bg-base-100 px-4 py-2 text-xs sm:text-sm font-semibold text-base-content hover:bg-base-200 hover:border-primary/40 active:scale-[0.98] transition-all duration-200"
+          >
+            <span>🔑 পাসওয়ার্ড পরিবর্তন</span>
+          </a>
+
           <button
             onClick={handleSignOut}
             type="button"
@@ -270,6 +278,11 @@ export default function ProfileClient({ user }: { user: UserInfo }) {
           </button>
         </div>
       </div>
+
+      {/* Password Change Section */}
+      <section id="password-section" className="scroll-mt-24">
+        <ChangePasswordForm />
+      </section>
     </div>
   );
 }

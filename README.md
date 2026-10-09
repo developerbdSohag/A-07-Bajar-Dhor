@@ -1,160 +1,166 @@
-# 🛒 বাজার দর (BazarDor) — নিত্যপণ্যের বাজারদর ও বিশ্লেষণ প্ল্যাটফর্ম
+# 🛒 BazarDor — Daily Commodity Price Tracker & Market Analysis Platform
 
-**বাজার দর (BazarDor)** হলো একটি আধুনিক ও প্রতিক্রিয়াশীল (responsive) ওয়েব অ্যাপ্লিকেশন, যার মাধ্যমে ব্যবহারকারীরা বাংলাদেশের বিভিন্ন বাজারের নিত্যপ্রয়োজনীয় পণ্যের (চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলা) দৈনন্দিন দরদাম, মূল্য পরিবর্তন (উত্থান/পতন), সর্বোচ্চ-সর্বনিম্ন-গড় দর এবং বাজারভিত্তিক বিস্তারিত তুলনা এক নজরে জানতে পারবেন।
+[![Live Demo](https://img.shields.io/badge/Live%20Demo-Vercel-success?style=for-the-badge&logo=vercel)](https://a-07-bajar-dhor.vercel.app)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-Repository-blue?style=for-the-badge&logo=github)](https://github.com/developerbdSohag/A-07-Bajar-Dhor)
+[![Next.js](https://img.shields.io/badge/Next.js-15%20App%20Router-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind-CSS-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
 
----
-
-## 🌐 লাইভ ডেমো ও রিপোজিটরি (Live Link & Repository)
-
-- **লাইভ লিংক (Live Link):** [https://a-07-bajar-dhor.vercel.app](https://a-07-bajar-dhor.vercel.app)
-- **গিটহাব রিপোজিটরি (GitHub Repo):** [https://github.com/developerbdSohag/A-07-Bajar-Dhor](https://github.com/developerbdSohag/A-07-Bajar-Dhor)
-
----
-
-## 🚀 প্রধান বৈশিষ্ট্যসমূহ (Key Features — Minimum 5)
-
-1. **রিয়েল-টাইম প্রাইস মারকুই টিকার (Price Ticker Marquee):**
-   - ওয়েবসাইটের শীর্ষে অবিরাম স্ক্রলিং করা টিকার স্ট্রিপ যাতে প্রতিটি পণ্যের নাম, আজকের দর এবং মূল্য পরিবর্তনের শতকরা হার (▲/▼ %) প্রদর্শিত হয়। মাউস হভার করলে স্বয়ংক্রিয়ভাবে স্ক্রলিং পজ (pause) হয়।
-
-2. **দৈনিক মূল্য পরিবর্তন ট্র্যাকার (Top Risers & Fallers):**
-   - **আজ দাম বেড়েছে ▲:** গতকালের তুলনায় সর্বোচ্চ মূল্য বৃদ্ধি পাওয়া শীর্ষ ৬টি পণ্য।
-   - **আজ দাম কমেছে ▼:** গতকালের তুলনায় মূল্য হ্রাস পাওয়া শীর্ষ ৬টি পণ্য।
-   - উপভোক্তা বাজারের মানদণ্ড অনুযায়ী দর বৃদ্ধিতে লাল/error ব্যাজ এবং দর হ্রাসে সবুজ/success ব্যাজ প্রদর্শন।
-
-3. **বাংলা সংখ্যাভিত্তিক স্বয়ংক্রিয় সর্টিং (Bengali Numeral Sorting - Challenge C1):**
-   - ক্যাটাগরি ও সব পণ্য সেকশনে রয়েছে ৩টি সর্টিং অপশন:
-     - `ডিফল্ট`
-     - `দাম: কম থেকে বেশি`
-     - `দাম: বেশি থেকে কম`
-   - স্ট্রিং এর বদলে বিশুদ্ধ সংখ্যাগত মানে (numeric value) নিখুঁত সর্টিং করা হয় এবং স্বয়ংক্রিয়ভাবে বাংলা সংখ্যায় (০-৯) ফরম্যাট করা হয়।
-
-4. **বাজারভিত্তিক তুলনামূলক বিশ্লেষণ ও সুরক্ষিত রাউট (Bazar-wise Price Comparison & Protected Route):**
-   - পণ্যের বিস্তারিত পৃষ্ঠা (`/product/[slug]`) একটি সুরক্ষিত (Protected) রাউট। লগইন ছাড়া প্রবেশ করলে ব্যবহারকারীকে নোটিফিকেশন সহ সাইন-ইন পেজে রিডাইরেক্ট করা হয়।
-   - লগইন করার পর পণ্যটির সর্বনিম্ন দর, সর্বাধিক দর, গড় দর এবং বিভিন্ন বাজারের (যেমন: কারওয়ান বাজার, নিউ মার্কেট, মিরপুর ইত্যাদি) তুলনামূলক টেবিল প্রদর্শিত হয়।
-
-5. **নিরাপদ অথেনটিকেশন ও প্রোফাইল আপডেট (BetterAuth Authentication & Profile Update - Challenge C3):**
-   - BetterAuth দ্বারা পরিচালিত ইমেইল/পাসওয়ার্ড ও সোশ্যাল লগইন (Google/GitHub)।
-   - ব্যবহারকারীর প্রোফাইল পেজ (`/profile`) এবং সেখান থেকে সরাসরি তথ্য আপডেট রাউটে (`/profile/update`) গিয়ে নিজের নাম হালনাগাদ করার সুবিধা।
-   - প্রতিটি অ্যাকশনে ইন্টারেক্টিভ ও দৃষ্টিনন্দন টোস্ট নোটিফিকেশন (`react-hot-toast`)।
-
-6. **পূর্ণাঙ্গ রেসপনসিভ ডিজাইন ও কাস্টম ৪০৪ পৃষ্ঠা (Responsive UI & Friendly 404):**
-   - মোবাইল, ট্যাবলেট এবং ডেস্কটপ সব ডিভাইসে সমানভাবে ব্যবহারযোগ্য।
-   - ভুল বা অনুপস্থিত লিংকে প্রবেশ করলে ব্যবহারকারীকে বাংলায় কাস্টম ৪০৪ পৃষ্ঠা ও "হোম পেজে ফিরে যান" বোতাম প্রদর্শন।
+**BazarDor** is a modern, responsive web application designed to track, compare, and analyze the daily retail prices of essential kitchen commodities—including rice, lentils, edible oils, vegetables, fish, meat, eggs, and spices—across prominent local markets in Bangladesh. The platform empowers consumers with real-time price change insights, historical averages, market-by-market comparisons, and seamless user account management.
 
 ---
 
-## 🛠️ ব্যবহৃত প্রযুক্তিসমূহ (Technologies Used)
+## 🌐 Live Demo & Repository Links
 
-| প্রযুক্তি (Technology) | বিবরণ (Purpose) |
+- **Live Deployment:** [https://a-07-bajar-dhor.vercel.app](https://a-07-bajar-dhor.vercel.app)
+- **GitHub Repository:** [https://github.com/developerbdSohag/A-07-Bajar-Dhor](https://github.com/developerbdSohag/A-07-Bajar-Dhor)
+
+---
+
+## 🚀 Key Features
+
+### 1. 📈 Real-Time Price Ticker (Marquee Strip)
+- An infinite horizontal ticker positioned directly beneath the navigation bar, presenting live commodity price movements, current prices per unit, and percentage change tags (`▲ / ▼ %`).
+- Equipped with GPU hardware acceleration (`will-change: transform`) and automatic pause on mouse hover or keyboard focus for comfortable reading.
+
+### 2. ⚖️ Daily Price Fluctuation Tracker (Top Risers & Fallers)
+- **Top Risers (আজ দাম বেড়েছে ▲):** Displays the top 6 commodities that experienced price increases compared to yesterday, highlighted with warning/red indicator badges.
+- **Top Fallers (আজ দাম কমেছে ▼):** Displays the top 6 commodities with price drops, highlighted with consumer-friendly green badges.
+- **All Products Grid:** A responsive grid showing complete inventory with category icons, unit rates, and direct links to details.
+
+### 3. 🔍 Bazar-Wise Price Comparison & Protected Product Details
+- Detailed product pages (`/product/[slug]`) are protected routes requiring user authentication, redirecting unauthenticated visitors with helpful toast alerts.
+- Provides comprehensive statistical summaries: **Minimum Price**, **Maximum Price**, and **Average Price**.
+- Features an interactive table comparing rates across renowned Dhaka bazaars (e.g., Karwan Bazar, New Market, Mirpur Bazar, Uttara Bazar).
+
+### 4. 🔢 Bengali Numeral Numerical Sorting
+- Flexible sorting controls across Category and All Products views:
+  - `Default (ডিফল্ট)`
+  - `Price: Low to High (দাম: কম থেকে বেশি)`
+  - `Price: High to Low (দাম: বেশি থেকে কম)`
+- Performs true numerical value sorting under the hood rather than alphabetical sorting, converting results back to Bengali numerals (`০-৯`) seamlessly.
+
+### 5. 🔐 Secure Authentication & Dynamic Profile Management
+- Powered by **BetterAuth** with email/password and social login options (Google & GitHub).
+- Includes persistent flash toast notifications (`react-hot-toast`) that automatically display upon sign-in (`"সফল ভাবে সাইন ইন হয়েছে"`) and sign-out (`"সফল ভাবে সাইন আউট হয়েছে"`).
+- Dedicated Settings Dashboard (`/profile/update`) featuring:
+  - **Profile Information:** Interactive profile picture avatar upload and preview with real-time navbar synchronization and display name update.
+  - **Security & Password:** In-dashboard password change with current password cryptographic verification, live strength meter, and show/hide visibility toggles.
+
+---
+
+## 🛠️ Technologies Used
+
+| Technology | Role / Purpose |
 |---|---|
-| **Next.js 15 (App Router)** | পূর্ণাঙ্গ ফ্রন্টএন্ড ফ্রেমওয়ার্ক, সার্ভার-সাইড রেন্ডারিং (SSR) ও স্ট্যাটিক সাইট জেনারেশন (SSG) |
-| **React 19 & TypeScript** | শক্তিশালী টাইপ-সেফ কম্পোনেন্ট আর্কিটেকচার |
-| **Tailwind CSS** | আধুনিক ইউটিলিটি-ফার্স্ট সিএসএস স্টাইলিং |
-| **DaisyUI 4** | থিমেবল ও মার্জিত ইউআই কম্পোনেন্ট (থিম: `bazardor`) |
-| **BetterAuth** | আধুনিক, সুরক্ষিত অথেনটিকেশন সিস্টেম ও সেশন ম্যানেজমেন্ট |
-| **Better-SQLite3** | লাইটওয়েট সার্ভারলেস ডাটাবেজ অ্যাডাপ্টার |
-| **React Hot Toast** | মসৃণ ও প্রাণবন্ত ব্যবহারকারী নোটিফিকেশন সিস্টেম |
-| **Noto Sans Bengali Font** | গুগল ফন্ট দ্বারা সমর্থিত নান্দনিক বাংলা টাইপোগ্রাফি |
+| **Next.js 15 (App Router)** | Full-stack React framework with Server Components (RSC), SSR, and SSG |
+| **React 19 & TypeScript** | Component architecture with strict static typing |
+| **Tailwind CSS 3** | Utility-first CSS styling and custom design tokens |
+| **DaisyUI 4** | Semantic UI component classes styled with custom `bazardor` theme |
+| **BetterAuth** | Modern authentication engine, session tokens, and secure password hashing |
+| **Better-SQLite3** | Lightweight database engine with automatic schema migrations |
+| **React Hot Toast** | Floating toast notification system positioned top-center |
+| **Google Fonts (Noto Sans Bengali)** | Clean, high-legibility Bengali typography across all screen viewports |
 
 ---
 
-## 📂 প্রোজেক্টের ফোল্ডার গঠন (Project Structure)
+## 📁 Project Structure
 
 ```text
-├── public/                    # স্ট্যাটিক অ্যাসেটস ও ভেক্টর আইকন (bazar-hero.svg, logo-icon.png)
+├── public/                    # Static assets, SVG illustrations, and icons
 ├── src/
 │   ├── app/
-│   │   ├── api/auth/[...all]/ # BetterAuth API রাউট হ্যান্ডলার
-│   │   ├── category/[slug]/   # ক্যাটাগরি পেজ (সর্টিং ও স্কেলিটন লোডার)
-│   │   ├── product/[slug]/    # সুরক্ষিত পণ্যের বিস্তারিত ও বাজারভিত্তিক তালিকা
-│   │   ├── profile/           # ব্যবহারকারীর প্রোফাইল পেজ
-│   │   │   └── update/        # প্রোফাইল নাম হালনাগাদ করার পেজ (Challenge C3)
-│   │   ├── signin/            # সাইন ইন পেজ
-│   │   ├── signup/            # সাইন আপ পেজ
-│   │   ├── not-found.tsx      # কাস্টম ৪০৪ পেজ
-│   │   ├── layout.tsx         # গ্লোবাল লেআউট, ফন্ট, নাবার ও ফুটার
-│   │   ├── page.tsx           # হোম পেজ (হিরো, দাম বৃদ্ধি, দাম হ্রাস, সব পণ্য)
-│   │   └── globals.css        # টিকার অ্যানিমেশন ও গ্লোবাল সিএসএস
+│   │   ├── api/auth/[...all]/ # BetterAuth API endpoint routes
+│   │   ├── api/user/          # User management & password change endpoints
+│   │   ├── category/[slug]/   # Category product listing & sorting
+│   │   ├── product/[slug]/    # Protected product detail & bazar comparison
+│   │   ├── profile/           # User account profile overview
+│   │   │   └── update/        # Tabbed profile & password update dashboard
+│   │   ├── signin/            # User authentication sign-in page
+│   │   ├── signup/            # User registration sign-up page
+│   │   ├── not-found.tsx      # Custom Bengali 404 error page
+│   │   ├── layout.tsx         # Root layout, Noto Sans Bengali font & navbar
+│   │   ├── page.tsx           # Homepage (Hero, Risers, Fallers, All Products)
+│   │   └── globals.css        # Global CSS rules, ticker animation & font styles
 │   ├── components/
-│   │   ├── Navbar.tsx         # লোগো, বাংলা তারিখ, ক্যাটাগরি ট্যাব ও অথেনটিকেশন
-│   │   ├── PriceTicker.tsx    # মারকুই প্রাইস টিকার
-│   │   ├── Hero.tsx           # হিরো সেকশন ও স্মুথ স্ক্রল সিটিএ (#সব-পণ্য)
-│   │   ├── ProductCard.tsx    # পণ্যের রেসপনসিভ কার্ড
-│   │   ├── ProductGrid.tsx    # সর্টিং অপশনসহ পণ্য গ্রিড (C1)
-│   │   ├── SkeletonCard.tsx   # লোডিং স্কেলিটন স্টেট
-│   │   ├── Footer.tsx         # ফিগমা ডিজাইন অনুযায়ী ফুটার
-│   │   └── ToastProvider.tsx  # react-hot-toast কনফিগারেশন
+│   │   ├── Navbar.tsx         # Executive navbar with category pills & profile dropdown
+│   │   ├── PriceTicker.tsx    # Hardware-accelerated continuous price ticker
+│   │   ├── Hero.tsx           # Banner with Bengali date & anchor CTA
+│   │   ├── ProductCard.tsx    # Responsive product card with change badge
+│   │   ├── ProductGrid.tsx    # Responsive grid with numerical sorting
+│   │   ├── SkeletonCard.tsx   # Shimmer loading states
+│   │   ├── Footer.tsx         # Standardized footer matching Figma
+│   │   └── ToastProvider.tsx  # Top-center persistent toast listener
 │   ├── lib/
-│   │   ├── api.ts             # BASE_URL_1 ও BASE_URL_2 ফলব্যাক সহ এপিআই ক্লায়েন্ট
-│   │   ├── auth.ts            # BetterAuth সার্ভার কনফিগারেশন ও অটো-মাইগ্রেশন
-│   │   ├── auth-client.ts     # BetterAuth ক্লায়েন্ট কনফিগারেশন
-│   │   └── format.ts          # বাংলা সংখ্যা, মুদ্রা, ইউনিট ও তারিখ ফরম্যাটিং
-│   └── types/                 # টাইপস্ক্রিপ্ট ইন্টারফেস
-├── ASSIGNMENT.md              # মূল অ্যাসাইনমেন্ট নির্দেশিকা
-├── tailwind.config.ts         # টেইলউইন্ড ও ডেইজিইউআই থিম কনফিগারেশন
-├── package.json               # নির্ভরতা ও স্ক্রিপ্টসমূহ
-└── README.md                  # এই ডকুমেন্টেশন
+│   │   ├── api.ts             # API client with primary/secondary worker fallback
+│   │   ├── auth.ts            # BetterAuth server configuration & DB sync
+│   │   ├── auth-client.ts     # BetterAuth client-side React hooks
+│   │   └── format.ts          # Bengali numeral, date, currency & unit formatters
+│   └── types/                 # TypeScript interfaces and data contracts
+├── tailwind.config.ts         # Tailwind CSS & DaisyUI theme configuration
+├── package.json               # Dependencies and scripts
+└── README.md                  # Project documentation
 ```
 
 ---
 
-## ⚙️ লোকাল সেটআপ ও রান করার নিয়ম (Installation & Setup)
+## ⚙️ Installation & Local Setup
 
-১. **রিপোজিটরি ক্লোন করুন:**
-```bash
-git clone https://github.com/username/b14-a7-bazardor.git
-cd b14-a7-bazardor
-```
+### Prerequisites
+- Node.js (v18.18.0 or higher)
+- npm or yarn
 
-২. **প্যাকেজসমূহ ইনস্টল করুন:**
-```bash
-npm install
-```
+### Steps
 
-৩. **এনভায়রনমেন্ট ভেরিয়েবল সেট করুন:**
-`.env.example` ফাইলটি কপি করে `.env` তৈরি করুন:
-```env
-BETTER_AUTH_SECRET=your_secure_32_char_secret_key
-BETTER_AUTH_URL=http://localhost:3000
-```
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/developerbdSohag/A-07-Bajar-Dhor.git
+   cd A-07-Bajar-Dhor
+   ```
 
-৪. **ডেভেলপমেন্ট সার্ভার চালু করুন:**
-```bash
-npm run dev
-```
-ব্রাউজারে [http://localhost:3000](http://localhost:3000) ওপেন করুন।
+2. **Install project dependencies:**
+   ```bash
+   npm install
+   ```
 
-৫. **প্রোডাকশন বিল্ড ও রান:**
-```bash
-npm run build
-npm run start
-```
+3. **Configure Environment Variables:**
+   Create a `.env` file in the root directory:
+   ```env
+   BETTER_AUTH_SECRET=your_secure_32_character_secret_key
+   BETTER_AUTH_URL=http://localhost:3000
+   NEXT_PUBLIC_BASE_URL_1=https://api.api-store.workers.dev/api/bazardor
+   NEXT_PUBLIC_BASE_URL_2=https://api.abcz.workers.dev/api/bazardor
+   ```
 
----
+4. **Start the Development Server:**
+   ```bash
+   npm run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) in your browser to view the application.
 
-## 🎯 অ্যাসাইনমেন্ট রিকোয়ারমেন্টস চেকলিস্ট (Requirements Checklist)
-
-- [x] সব স্ক্রিন সাইজে সম্পূর্ণ রেসপনসিভ (Mobile, Tablet, Desktop)
-- [x] কমপক্ষে ৮টি অর্থপূর্ণ গিট কমিট (Meaningful Git Commits)
-- [x] ডেপ্লয়মেন্টের পর কোনো এরর ছাড়া সঠিকভাবে চলমান
-- [x] আকর্ষণীয় ও তথ্যবহুল `README.md`
-- [x] **নাবার (Navbar):** ফিগমা অনুযায়ী লোগো, বাংলা তারিখ, ক্যাটাগরি ট্যাব, অ্যাক্টিভ স্টাইল, অথ বাটন ও প্রোফাইল
-- [x] **প্রাইস টিকার (Price Ticker):** নিচে ইনফিনিট স্ক্রলিং মারকুই স্ট্রিপ
-- [x] **হিরো ব্যানার (Hero):** আইব্রো, হেডিং, সাবটাইটেল, ইমেজ ও `#সব-পণ্য` অ্যাঙ্কর লিংক
-- [x] **পণ্য সেকশন (Home):**
-  - Section A: আজ দাম বেড়েছে ▲ (শীর্ষ ৬)
-  - Section B: আজ দাম কমেছে ▼ (শীর্ষ ৬)
-  - Section C: সব পণ্য (রেসপনসিভ গ্রিড)
-- [x] **পণ্যের বিস্তারিত পেজ (`/product/[slug]`):** সুরক্ষিত রাউট, দামের সারসংক্ষেপ (সর্বনিম্ন, সর্বাধিক, গড়) এবং বাজারভিত্তিক টেবিল
-- [x] **ক্যাটাগরি পেজ (`/category/[slug]`):** লোডিং স্কেলিটন, সর্ট ড্রপডাউন এবং এম্পটি স্টেট
-- [x] **অথেনটিকেশন (`/signin`, `/signup`):** BetterAuth, ভ্যালিডেশন, সোশ্যাল বাটন ও টোস্ট নোটিফিকেশন
-- [x] **ফুটার (Footer):** ফিগমার সাথে হুবহু মিল রেখে তৈরি
-- [x] **চ্যালেঞ্জ C1:** বাংলা সংখ্যাসহ বিশুদ্ধ নিউমেরিক্যাল সর্ট ড্রপডাউন (কম থেকে বেশি, বেশি থেকে কম)
-- [x] **চ্যালেঞ্জ C2:** বিস্তারিত ও পেশাদার গিটহাব রিডমি (GitHub README)
-- [x] **চ্যালেঞ্জ C3:** প্রোফাইল থেকে আলাদা রাউটে গিয়ে নাম আপডেট করার সুবিধা (`updateUser` API)
+5. **Build for Production:**
+   ```bash
+   npm run build
+   npm run start
+   ```
 
 ---
 
-## 📄 লাইসেন্স (License)
+## 🎯 Requirements & Verification Checklist
 
-প্রজেক্টটি শিক্ষামূলক উদ্দেশ্যে প্রস্তুতকৃত।
+- [x] **Project Name:** BazarDor
+- [x] **Language:** Written completely in English
+- [x] **Fully Responsive:** Tested across Mobile, Tablet, and Desktop screen viewports
+- [x] **Meaningful Git Commits:** Over 10+ structured and descriptive git commits
+- [x] **Zero Error Deployment:** Successfully running live on Vercel without runtime errors
+- [x] **Price Ticker Marquee:** Calm, hardware-accelerated scrolling with hover-to-pause
+- [x] **Category Navigation & Sorting:** Clean category tabs with numerical price sorting
+- [x] **Protected Routes:** Product details protected by authentication with automatic toast notification
+- [x] **Persistent Notifications:** Automatic top-center toast alerts on sign-in and sign-out
+- [x] **Profile & Security Dashboard:** In-dashboard profile photo upload, name change, and password reset
+
+---
+
+## 📄 License
+
+This project is developed for educational purposes as part of the Programming Hero Web Development Program.

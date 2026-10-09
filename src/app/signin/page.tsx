@@ -59,9 +59,17 @@ function SignInForm() {
         setErrorMessage(msg);
         toast.error(msg);
       } else {
-        toast.success("সফলভাবে সাইন ইন হয়েছে!");
-        // Hard navigate so fresh cookies are immediately transmitted to server components
-        window.location.href = callbackUrl;
+        try {
+          sessionStorage.setItem(
+            "bazardor_toast",
+            JSON.stringify({ type: "success", message: "সফল ভাবে সাইন ইন হয়েছে" })
+          );
+        } catch {}
+        toast.success("সফল ভাবে সাইন ইন হয়েছে", { id: "auth-toast" });
+        const targetUrl = callbackUrl.includes("?")
+          ? `${callbackUrl}&auth=signin`
+          : `${callbackUrl}?auth=signin`;
+        window.location.href = targetUrl;
       }
     } catch (err: any) {
       const msg = err?.message || "সাইন ইন করতে সমস্যা হয়েছে। আবার চেষ্টা করুন।";
@@ -75,9 +83,18 @@ function SignInForm() {
   const handleSocialLogin = async (provider: "google" | "github") => {
     setSocialLoading(provider);
     try {
+      const targetUrl = callbackUrl.includes("?")
+        ? `${callbackUrl}&auth=signin`
+        : `${callbackUrl}?auth=signin`;
+      try {
+        sessionStorage.setItem(
+          "bazardor_toast",
+          JSON.stringify({ type: "success", message: "সফল ভাবে সাইন ইন হয়েছে" })
+        );
+      } catch {}
       const res = await signIn.social({
         provider,
-        callbackURL: callbackUrl,
+        callbackURL: targetUrl,
       });
 
       if (res?.error) {

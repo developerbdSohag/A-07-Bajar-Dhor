@@ -92,8 +92,14 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
   const handleSignOut = async () => {
     try {
       await signOut();
-      toast.success("সফলভাবে সাইন আউট হয়েছেন।");
-      window.location.href = "/";
+      try {
+        sessionStorage.setItem(
+          "bazardor_toast",
+          JSON.stringify({ type: "success", message: "সফল ভাবে সাইন আউট হয়েছে" })
+        );
+      } catch {}
+      toast.success("সফল ভাবে সাইন আউট হয়েছে", { id: "auth-toast" });
+      window.location.href = "/?auth=signout";
     } catch {
       toast.error("সাইন আউট করতে সমস্যা হয়েছে।");
     }

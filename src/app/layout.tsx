@@ -1,18 +1,11 @@
 import type { Metadata } from "next";
-import { Hind_Siliguri, Noto_Sans_Bengali } from "next/font/google";
+import { Noto_Sans_Bengali } from "next/font/google";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import PriceTicker from "@/components/PriceTicker";
 import Footer from "@/components/Footer";
 import ToastProvider from "@/components/ToastProvider";
 import { getAllCategories, getAllProducts } from "@/lib/api";
-
-const hindSiliguri = Hind_Siliguri({
-  subsets: ["bengali", "latin"],
-  weight: ["300", "400", "500", "600", "700"],
-  variable: "--font-hind-siliguri",
-  display: "swap",
-});
 
 const notoSansBengali = Noto_Sans_Bengali({
   subsets: ["bengali", "latin"],
@@ -49,7 +42,7 @@ export default async function RootLayout({
     <html
       lang="bn"
       data-theme="bazardor"
-      className={`${hindSiliguri.variable} ${notoSansBengali.variable}`}
+      className={notoSansBengali.variable}
     >
       <body className="bg-base-200 text-base-content antialiased font-sans">
         <ToastProvider />

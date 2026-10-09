@@ -29,11 +29,46 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
   const { data: session, isPending } = useSession();
   const [banglaDate, setBanglaDate] = useState("বুধবার, ৭ অক্টোবর, ২০২৬");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [avatarImage, setAvatarImage] = useState<string | null>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     setBanglaDate(getBanglaDate(new Date()));
   }, []);
+
+  useEffect(() => {
+    const email = session?.user?.email;
+    const cached =
+      (email && localStorage.getItem(`bazardor_avatar_${email}`)) ||
+      session?.user?.image ||
+      localStorage.getItem("bazardor_avatar") ||
+      null;
+    setAvatarImage(cached);
+  }, [session?.user?.email, session?.user?.image]);
+
+  useEffect(() => {
+    const handleAvatarUpdate = (e: Event) => {
+      const customEvent = e as CustomEvent;
+      if (customEvent.detail && customEvent.detail.image !== undefined) {
+        setAvatarImage(customEvent.detail.image);
+      } else {
+        const email = session?.user?.email;
+        const cached =
+          (email && localStorage.getItem(`bazardor_avatar_${email}`)) ||
+          session?.user?.image ||
+          localStorage.getItem("bazardor_avatar") ||
+          null;
+        setAvatarImage(cached);
+      }
+    };
+
+    window.addEventListener("bazardor-avatar-updated", handleAvatarUpdate);
+    window.addEventListener("storage", handleAvatarUpdate);
+    return () => {
+      window.removeEventListener("bazardor-avatar-updated", handleAvatarUpdate);
+      window.removeEventListener("storage", handleAvatarUpdate);
+    };
+  }, [session?.user?.email, session?.user?.image]);
 
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
@@ -102,10 +137,10 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
               >
                 {/* User avatar circle */}
                 <div className="size-8 sm:size-9 shrink-0 rounded-full ring-1 ring-base-300/80 overflow-hidden bg-primary/10 flex items-center justify-center text-primary font-bold text-sm sm:text-base shadow-xs">
-                  {session.user.image ? (
+                  {avatarImage ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
-                      src={session.user.image}
+                      src={avatarImage}
                       alt={session.user.name || "ব্যবহারকারী"}
                       className="size-full object-cover"
                     />
@@ -145,14 +180,28 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
                   role="menu"
                   className="absolute right-0 top-full mt-2 w-64 rounded-2xl border border-base-200 bg-base-100 p-4 shadow-xl z-50 animate-in fade-in zoom-in-95 duration-150"
                 >
-                  {/* Header: Full Name & Email */}
-                  <div className="mb-3 border-b border-base-200 pb-3">
-                    <p className="font-bold text-base text-base-content leading-snug break-words">
-                      {session.user.name}
-                    </p>
-                    <p className="text-xs text-base-content/60 mt-0.5 truncate break-all">
-                      {session.user.email}
-                    </p>
+                  {/* Header: Avatar, Full Name & Email */}
+                  <div className="mb-3 flex items-center gap-3 border-b border-base-200 pb-3">
+                    <div className="size-11 shrink-0 rounded-full ring-1 ring-base-300 overflow-hidden bg-primary/10 flex items-center justify-center text-primary font-bold text-base shadow-xs">
+                      {avatarImage ? (
+                        // eslint-disable-next-line @next/next/no-img-element
+                        <img
+                          src={avatarImage}
+                          alt={session.user.name || "ব্যবহারকারী"}
+                          className="size-full object-cover"
+                        />
+                      ) : (
+                        <span>{session.user.name?.charAt(0) || "ব"}</span>
+                      )}
+                    </div>
+                    <div className="min-w-0 flex-1">
+                      <p className="font-bold text-base text-base-content leading-snug break-words">
+                        {session.user.name}
+                      </p>
+                      <p className="text-xs text-base-content/60 mt-0.5 truncate break-all">
+                        {session.user.email}
+                      </p>
+                    </div>
                   </div>
 
                   {/* Menu items */}

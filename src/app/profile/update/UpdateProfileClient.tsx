@@ -300,11 +300,11 @@ export default function UpdateProfileClient({ user }: { user: UserInfo }) {
         </header>
 
         {/* Dynamic Segmented Control Tabs */}
-        <div className="mb-6 inline-flex p-1 rounded-full bg-base-200/80 border border-base-300/80 w-full sm:w-auto">
+        <div className="mb-6 inline-flex p-1.5 rounded-xl bg-base-200/80 border border-base-300/80 w-full sm:w-auto">
           <button
             type="button"
             onClick={() => setActiveTab("profile")}
-            className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 active:scale-95 ${
+            className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 active:scale-95 ${
               activeTab === "profile"
                 ? "bg-primary text-primary-content shadow-xs shadow-primary/25"
                 : "text-base-content/70 hover:text-base-content hover:bg-base-100/50"
@@ -315,7 +315,7 @@ export default function UpdateProfileClient({ user }: { user: UserInfo }) {
           <button
             type="button"
             onClick={() => setActiveTab("password")}
-            className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-full px-5 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 active:scale-95 ${
+            className={`flex-1 sm:flex-initial inline-flex items-center justify-center gap-2 rounded-lg px-5 py-2 text-xs sm:text-sm font-semibold transition-all duration-200 active:scale-95 ${
               activeTab === "password"
                 ? "bg-primary text-primary-content shadow-xs shadow-primary/25"
                 : "text-base-content/70 hover:text-base-content hover:bg-base-100/50"
@@ -355,7 +355,7 @@ export default function UpdateProfileClient({ user }: { user: UserInfo }) {
                     <button
                       type="button"
                       onClick={() => fileInputRef.current?.click()}
-                      className="inline-flex items-center gap-1.5 rounded-full border border-base-300 bg-base-100 px-4 py-1.5 text-xs sm:text-sm font-semibold text-base-content shadow-2xs hover:bg-base-200 hover:border-primary/40 active:scale-95 transition"
+                      className="inline-flex items-center gap-1.5 rounded-lg border border-base-300 bg-base-100 px-4 py-1.5 text-xs sm:text-sm font-semibold text-base-content shadow-2xs hover:bg-base-200 hover:border-primary/40 active:scale-95 transition"
                     >
                       <span>📷 নতুন ছবি নির্বাচন</span>
                     </button>
@@ -363,7 +363,7 @@ export default function UpdateProfileClient({ user }: { user: UserInfo }) {
                       <button
                         type="button"
                         onClick={handleRemoveImage}
-                        className="inline-flex items-center gap-1 rounded-full border border-error/30 bg-base-100 px-3.5 py-1.5 text-xs sm:text-sm font-medium text-error hover:bg-error/10 active:scale-95 transition"
+                        className="inline-flex items-center gap-1 rounded-lg border border-error/30 bg-base-100 px-3.5 py-1.5 text-xs sm:text-sm font-medium text-error hover:bg-error/10 active:scale-95 transition"
                       >
                         ছবি মুছুন
                       </button>
@@ -414,12 +414,12 @@ export default function UpdateProfileClient({ user }: { user: UserInfo }) {
                 </span>
               </label>
 
-              {/* Foam-Smooth Action Buttons */}
+              {/* Professional Rectangle Action Buttons */}
               <div className="flex flex-col sm:flex-row items-center gap-3 mt-4 pt-2 border-t border-base-200/80">
                 <button
                   type="submit"
                   disabled={profileLoading}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-2.5 text-sm font-semibold text-primary-content shadow-sm shadow-primary/25 hover:bg-primary/95 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 disabled:opacity-60 flex-1 sm:flex-initial"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-7 py-2.5 text-sm font-semibold text-primary-content shadow-xs shadow-primary/25 hover:bg-primary/95 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 disabled:opacity-60 flex-1 sm:flex-initial"
                 >
                   {profileLoading ? (
                     <span className="loading loading-spinner loading-sm"></span>
@@ -430,7 +430,7 @@ export default function UpdateProfileClient({ user }: { user: UserInfo }) {
 
                 <Link
                   href="/profile"
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-base-300 bg-base-100 px-6 py-2.5 text-sm font-medium text-base-content/80 hover:bg-base-200 active:scale-[0.98] transition-all duration-200"
+                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl border border-base-300 bg-base-100 px-6 py-2.5 text-sm font-medium text-base-content/80 hover:bg-base-200 active:scale-[0.98] transition-all duration-200"
                 >
                   বাতিল করুন
                 </Link>
@@ -535,12 +535,12 @@ export default function UpdateProfileClient({ user }: { user: UserInfo }) {
                 </div>
               </label>
 
-              {/* Foam-Smooth Action Buttons */}
+              {/* Professional Rectangle Action Buttons */}
               <div className="flex flex-col sm:flex-row items-center gap-3 mt-4 pt-2 border-t border-base-200/80">
                 <button
                   type="submit"
                   disabled={passwordLoading}
-                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-primary px-7 py-2.5 text-sm font-semibold text-primary-content shadow-sm shadow-primary/25 hover:bg-primary/95 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 disabled:opacity-60 flex-1 sm:flex-initial"
+                  className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-7 py-2.5 text-sm font-semibold text-primary-content shadow-xs shadow-primary/25 hover:bg-primary/95 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 disabled:opacity-60 flex-1 sm:flex-initial"
                 >
                   {passwordLoading ? (
                     <span className="loading loading-spinner loading-sm"></span>
@@ -552,7 +552,7 @@ export default function UpdateProfileClient({ user }: { user: UserInfo }) {
                 <button
                   type="button"
                   onClick={() => setActiveTab("profile")}
-                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-full border border-base-300 bg-base-100 px-6 py-2.5 text-sm font-medium text-base-content/80 hover:bg-base-200 active:scale-[0.98] transition-all duration-200"
+                  className="w-full sm:w-auto inline-flex items-center justify-center rounded-xl border border-base-300 bg-base-100 px-6 py-2.5 text-sm font-medium text-base-content/80 hover:bg-base-200 active:scale-[0.98] transition-all duration-200"
                 >
                   বাতিল
                 </button>

@@ -52,7 +52,7 @@ export default function ProductCard({ product }: ProductCardProps) {
             </p>
           </div>
           <span
-            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs sm:text-sm font-semibold shadow-xs ${changeClass}`}
+            className={`inline-flex items-center gap-1.5 rounded-lg px-2.5 py-1 text-xs sm:text-sm font-semibold shadow-xs ${changeClass}`}
             title={`গতকালের তুলনায় ${changeText}`}
           >
             <span aria-hidden="true">{changeIcon}</span>

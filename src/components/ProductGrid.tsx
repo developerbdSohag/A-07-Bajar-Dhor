@@ -44,7 +44,8 @@ export default function ProductGrid({ products, showSort = true }: ProductGridPr
                 id="sort-products"
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value as SortOption)}
-                className="appearance-none rounded-full border border-base-300/80 bg-base-100 py-1.5 pl-3.5 pr-8 text-sm font-medium text-base-content shadow-xs hover:border-primary/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer"
+                className="appearance-none rounded-xl border border-base-300/80 bg-base-100 py-1.5 pl-3.5 pr-8 text-sm font-medium text-base-content shadow-xs hover:border-primary/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer"
+                aria-label="পণ্য সাজানোর ধরণ নির্বাচন করুন"
               >
                 <option value="default">ডিফল্ট</option>
                 <option value="price-asc">দাম: কম থেকে বেশি</option>

@@ -256,7 +256,7 @@ export default function ProfileClient({ user }: { user: UserInfo }) {
           {/* Challenge C3: Update button that navigates to information update dashboard */}
           <Link
             href="/profile/update"
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-content shadow-sm shadow-primary/25 hover:bg-primary/95 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary px-5 py-2.5 text-sm font-semibold text-primary-content shadow-xs shadow-primary/25 hover:bg-primary/95 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
           >
             <span>✏️ তথ্য হালনাগাদ করুন</span>
           </Link>
@@ -264,7 +264,7 @@ export default function ProfileClient({ user }: { user: UserInfo }) {
           <button
             onClick={handleSignOut}
             type="button"
-            className="inline-flex items-center justify-center gap-2 rounded-full border border-error/30 bg-base-100 text-error px-5 py-2.5 text-sm font-semibold hover:bg-error/10 hover:border-error/60 active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
+            className="inline-flex items-center justify-center gap-2 rounded-xl border border-error/30 bg-base-100 text-error px-5 py-2.5 text-sm font-semibold hover:bg-error/10 hover:border-error/60 active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
           >
             <span>↩ সাইন আউট</span>
           </button>

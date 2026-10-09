@@ -10,9 +10,10 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: [
+          "var(--font-hind-siliguri)",
           "var(--font-noto-sans-bengali)",
-          "Noto Sans Bengali",
           "Hind Siliguri",
+          "Noto Sans Bengali",
           "Inter",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -49,6 +50,10 @@ const config: Config = {
           "warning-content": "oklch(26% 0.05 80)",
           "error": "oklch(57% 0.19 25)",
           "error-content": "oklch(98% 0.01 25)",
+          "--rounded-box": "1rem",
+          "--rounded-btn": "0.75rem",
+          "--rounded-badge": "0.5rem",
+          "--tab-radius": "0.75rem",
         },
       },
     ],

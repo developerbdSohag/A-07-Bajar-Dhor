@@ -203,7 +203,7 @@ export default function ChangePasswordForm({
           <button
             type="submit"
             disabled={loading}
-            className="inline-flex items-center justify-center gap-2 rounded-full bg-primary py-2.5 px-6 text-sm font-semibold text-primary-content shadow-md shadow-primary/20 hover:bg-primary/95 hover:shadow-lg active:scale-[0.98] transition-all duration-200 disabled:opacity-60 flex-1"
+            className="inline-flex items-center justify-center gap-2 rounded-xl bg-primary py-2.5 px-6 text-sm font-semibold text-primary-content shadow-xs shadow-primary/25 hover:bg-primary/95 hover:shadow-md active:scale-[0.98] transition-all duration-200 disabled:opacity-60 flex-1"
           >
             {loading ? (
               <span className="loading loading-spinner loading-sm"></span>
@@ -216,7 +216,7 @@ export default function ChangePasswordForm({
             <button
               type="button"
               onClick={onCancel}
-              className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium text-base-content/75 hover:bg-base-200 active:scale-[0.98] transition-all duration-200"
+              className="inline-flex items-center justify-center rounded-xl border border-base-300 bg-base-100 px-5 py-2.5 text-sm font-medium text-base-content/75 hover:bg-base-200 active:scale-[0.98] transition-all duration-200"
             >
               বাতিল
             </button>

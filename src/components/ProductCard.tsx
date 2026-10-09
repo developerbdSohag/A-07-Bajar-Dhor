@@ -30,7 +30,7 @@ export default function ProductCard({ product }: ProductCardProps) {
         <div className="flex items-start gap-3.5">
           <span
             aria-hidden="true"
-            className="grid size-13 shrink-0 place-items-center rounded-2xl bg-base-200/70 text-2xl select-none group-hover:scale-105 transition-transform duration-200"
+            className="grid size-12 shrink-0 place-items-center rounded-2xl bg-base-200/70 text-2xl select-none group-hover:scale-105 transition-transform duration-200"
           >
             {product.image || product.categoryIcon || "🛒"}
           </span>

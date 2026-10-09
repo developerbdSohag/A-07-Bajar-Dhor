@@ -124,6 +124,8 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
+                  width="16"
+                  height="16"
                   className={`size-4 text-base-content/60 transition-transform duration-200 ${
                     dropdownOpen ? "rotate-180 text-primary" : "group-hover:text-base-content"
                   }`}

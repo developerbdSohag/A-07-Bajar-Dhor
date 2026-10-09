@@ -72,13 +72,6 @@ function SignInForm() {
     }
   };
 
-  const handleFillDemo = (demoEmail: string, demoPass: string) => {
-    setEmail(demoEmail);
-    setPassword(demoPass);
-    setErrorMessage("");
-    toast.success("ডেমো অ্যাকাউন্টের তথ্য পূরণ করা হয়েছে!");
-  };
-
   const handleSocialLogin = async (provider: "google" | "github") => {
     setSocialLoading(provider);
     try {
@@ -172,26 +165,6 @@ function SignInForm() {
               "সাইন ইন"
             )}
           </button>
-
-          {/* Quick Demo Credentials for Fast Testing */}
-          <div className="mt-2 rounded-xl border border-primary/20 bg-primary/5 p-3 text-xs text-base-content/80">
-            <div className="flex items-center justify-between mb-1">
-              <span className="font-semibold text-primary">পরীক্ষার জন্য ডেমো অ্যাকাউন্ট:</span>
-              <button
-                type="button"
-                onClick={() => handleFillDemo("demo@bazardor.com", "Password123!")}
-                className="btn btn-xs btn-primary btn-outline"
-              >
-                স্বয়ংক্রিয় পূরণ
-              </button>
-            </div>
-            <p>
-              ইমেইল: <code className="font-mono font-medium">demo@bazardor.com</code>
-            </p>
-            <p>
-              পাসওয়ার্ড: <code className="font-mono font-medium">Password123!</code>
-            </p>
-          </div>
 
           <div className="divider my-1 text-xs text-base-content/60">অথবা</div>
 

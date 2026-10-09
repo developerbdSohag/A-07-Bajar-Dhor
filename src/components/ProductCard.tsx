@@ -27,32 +27,32 @@ export default function ProductCard({ product }: ProductCardProps) {
     >
       <div className="flex flex-col gap-3">
         {/* Top: Emoji + Title + Unit */}
-        <div className="flex items-start gap-3">
+        <div className="flex items-start gap-3.5">
           <span
             aria-hidden="true"
-            className="grid size-12 shrink-0 place-items-center rounded-xl bg-base-200/70 text-2xl select-none group-hover:scale-105 transition-transform duration-200"
+            className="grid size-13 shrink-0 place-items-center rounded-2xl bg-base-200/70 text-2xl select-none group-hover:scale-105 transition-transform duration-200"
           >
             {product.image || product.categoryIcon || "🛒"}
           </span>
           <div className="min-w-0 flex-1">
-            <h3 className="truncate text-base font-semibold text-base-content group-hover:text-primary transition-colors">
+            <h3 className="truncate text-lg font-bold text-base-content group-hover:text-primary transition-colors">
               {product.nameBn}
             </h3>
-            <p className="text-xs text-base-content/60 mt-0.5">প্রতি {unit}</p>
+            <p className="text-sm text-base-content/70 mt-0.5">প্রতি {unit}</p>
           </div>
         </div>
 
         {/* Bottom: Price Row + Change Badge */}
-        <div className="flex items-end justify-between gap-2 pt-2 border-t border-base-200/70">
+        <div className="flex items-end justify-between gap-2 pt-2.5 border-t border-base-200/70">
           <div>
-            <p className="text-xs text-base-content/60">আজকের দাম</p>
-            <p className="text-xl font-bold text-base-content leading-tight">
+            <p className="text-xs sm:text-sm text-base-content/65">আজকের দাম</p>
+            <p className="text-2xl font-bold text-base-content leading-tight">
               {todayPrice}{" "}
-              <span className="text-xs font-normal text-base-content/60">টাকা</span>
+              <span className="text-sm font-normal text-base-content/70">টাকা</span>
             </p>
           </div>
           <span
-            className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold shadow-xs ${changeClass}`}
+            className={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs sm:text-sm font-semibold shadow-xs ${changeClass}`}
             title={`গতকালের তুলনায় ${changeText}`}
           >
             <span aria-hidden="true">{changeIcon}</span>

@@ -101,39 +101,39 @@ function SignInForm() {
           <span className="text-4xl select-none" aria-hidden="true">
             🛒
           </span>
-          <h1 className="mt-2 text-2xl font-bold text-base-content">সাইন ইন</h1>
-          <p className="text-sm text-base-content/70 mt-1">
+          <h1 className="mt-2 text-2xl sm:text-3xl font-extrabold text-base-content tracking-tight">সাইন ইন</h1>
+          <p className="text-sm sm:text-base text-base-content/75 mt-1">
             আপনার অ্যাকাউন্টে প্রবেশ করে বাজার দর দেখুন
           </p>
         </header>
 
         {isRegistered && (
-          <div className="alert alert-success text-sm mb-4 py-2.5 rounded-lg flex items-center gap-2">
+          <div className="alert alert-success text-sm mb-4 py-2.5 rounded-xl flex items-center gap-2">
             <span>✓</span>
             <span>অ্যাকাউন্ট সফলভাবে তৈরি হয়েছে! নিচে পাসওয়ার্ড দিয়ে সাইন ইন করুন।</span>
           </div>
         )}
 
         {isProtected && (
-          <div className="alert alert-warning text-sm mb-4 py-2.5 rounded-lg flex items-center gap-2">
+          <div className="alert alert-warning text-sm mb-4 py-2.5 rounded-xl flex items-center gap-2">
             <span>🔒</span>
             <span>পণ্যের বিস্তারিত দেখতে অনুগ্রহ করে সাইন ইন করুন।</span>
           </div>
         )}
 
         {errorMessage && (
-          <div className="alert alert-error text-sm mb-4 py-2 rounded-lg">
+          <div className="alert alert-error text-sm mb-4 py-2 rounded-xl">
             <span>{errorMessage}</span>
           </div>
         )}
 
         <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
           <label className="form-control w-full">
-            <span className="label-text mb-1 block font-medium">ইমেইল</span>
+            <span className="label-text mb-1 block font-semibold text-sm sm:text-base">ইমেইল</span>
             <input
               type="email"
               autoComplete="email"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full rounded-xl"
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -142,11 +142,11 @@ function SignInForm() {
           </label>
 
           <label className="form-control w-full">
-            <span className="label-text mb-1 block font-medium">পাসওয়ার্ড</span>
+            <span className="label-text mb-1 block font-semibold text-sm sm:text-base">পাসওয়ার্ড</span>
             <input
               type="password"
               autoComplete="current-password"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full rounded-xl"
               placeholder="কমপক্ষে ৮ অক্ষর"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -157,7 +157,7 @@ function SignInForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-full bg-primary py-2.5 px-4 text-sm font-semibold text-primary-content shadow-md shadow-primary/20 hover:bg-primary/95 hover:shadow-lg hover:shadow-primary/30 active:scale-[0.98] transition-all duration-200 disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
+            className="w-full rounded-full bg-primary py-3 px-4 text-sm sm:text-base font-semibold text-primary-content shadow-md shadow-primary/20 hover:bg-primary/95 hover:shadow-lg hover:shadow-primary/30 active:scale-[0.98] transition-all duration-200 disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
           >
             {loading ? (
               <span className="loading loading-spinner loading-sm"></span>

@@ -29,11 +29,11 @@ export default async function HomePage() {
       {/* 3. Section A: আজ দাম বেড়েছে ▲ */}
       {risers.length > 0 && (
         <section aria-labelledby="heading-risers">
-          <div className="mb-3 flex items-center gap-2">
-            <span aria-hidden="true" className="text-error text-lg font-bold">
+          <div className="mb-4 flex items-center gap-2.5">
+            <span aria-hidden="true" className="text-error text-xl font-bold">
               ▲
             </span>
-            <h2 id="heading-risers" className="text-xl font-bold text-base-content">
+            <h2 id="heading-risers" className="text-2xl sm:text-3xl font-extrabold text-base-content tracking-tight">
               আজ দাম বেড়েছে
             </h2>
           </div>
@@ -50,11 +50,11 @@ export default async function HomePage() {
       {/* 3. Section B: আজ দাম কমেছে ▼ */}
       {fallers.length > 0 && (
         <section aria-labelledby="heading-fallers">
-          <div className="mb-3 flex items-center gap-2">
-            <span aria-hidden="true" className="text-success text-lg font-bold">
+          <div className="mb-4 flex items-center gap-2.5">
+            <span aria-hidden="true" className="text-success text-xl font-bold">
               ▼
             </span>
-            <h2 id="heading-fallers" className="text-xl font-bold text-base-content">
+            <h2 id="heading-fallers" className="text-2xl sm:text-3xl font-extrabold text-base-content tracking-tight">
               আজ দাম কমেছে
             </h2>
           </div>
@@ -70,7 +70,7 @@ export default async function HomePage() {
 
       {/* 3. Section C: সব পণ্য */}
       <section id="সব-পণ্য" className="scroll-mt-32" aria-labelledby="heading-all-products">
-        <h2 id="heading-all-products" className="mb-3 text-xl font-bold text-base-content">
+        <h2 id="heading-all-products" className="mb-4 text-2xl sm:text-3xl font-extrabold text-base-content tracking-tight">
           সব পণ্য
         </h2>
         <ProductGrid products={products} showSort={true} />

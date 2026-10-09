@@ -10,7 +10,8 @@ const config: Config = {
     extend: {
       fontFamily: {
         sans: [
-          "var(--font-hind-siliguri)",
+          "var(--font-noto-sans-bengali)",
+          "Noto Sans Bengali",
           "Hind Siliguri",
           "Inter",
           "-apple-system",

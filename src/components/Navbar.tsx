@@ -71,37 +71,37 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
       {/* Top Bar */}
       <div className="mx-auto flex w-full max-w-6xl items-center gap-3 px-4 py-3">
         {/* Logo with Bangla date */}
-        <Link href="/" className="flex items-center gap-2 group">
+        <Link href="/" className="flex items-center gap-2.5 group">
           <span
             aria-hidden="true"
-            className="grid size-10 place-items-center rounded-xl bg-primary text-lg text-primary-content shadow-sm transition group-hover:scale-105"
+            className="grid size-11 place-items-center rounded-2xl bg-primary text-xl text-primary-content shadow-xs transition group-hover:scale-105"
           >
             🛒
           </span>
           <span className="leading-tight">
-            <span className="block text-xl font-bold tracking-tight text-base-content">
+            <span className="block text-2xl font-bold tracking-tight text-base-content">
               বাজার দর
             </span>
-            <span className="block text-xs text-base-content/60">{banglaDate}</span>
+            <span className="block text-sm font-medium text-base-content/70">{banglaDate}</span>
           </span>
         </Link>
 
         {/* Auth Buttons */}
         <div className="ms-auto flex items-center gap-2">
           {isPending ? (
-            <div className="skeleton h-9 w-24 rounded-lg"></div>
+            <div className="skeleton h-10 w-28 rounded-full"></div>
           ) : session?.user ? (
             <div className="relative" ref={dropdownRef}>
               <button
                 type="button"
                 onClick={() => setDropdownOpen((prev) => !prev)}
-                className="group inline-flex items-center gap-2 rounded-full border border-base-300/80 bg-base-100/90 py-1 pl-1.5 pr-3 text-xs sm:text-sm font-medium text-base-content shadow-xs hover:border-primary/40 hover:bg-base-200/60 hover:shadow-sm active:scale-[0.98] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
+                className="group inline-flex items-center gap-2 rounded-full border border-base-300/80 bg-base-100/90 py-1.5 pl-2 pr-3.5 text-sm sm:text-base font-semibold text-base-content shadow-xs hover:border-primary/40 hover:bg-base-200/60 hover:shadow-sm active:scale-[0.98] transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-primary/30"
                 aria-expanded={dropdownOpen}
                 aria-haspopup="menu"
                 title="প্রোফাইল মেনু"
               >
                 {/* User avatar circle */}
-                <div className="size-7 sm:size-8 shrink-0 rounded-full ring-1 ring-base-300/80 overflow-hidden bg-primary/10 flex items-center justify-center text-primary font-bold text-xs sm:text-sm shadow-xs">
+                <div className="size-8 sm:size-9 shrink-0 rounded-full ring-1 ring-base-300/80 overflow-hidden bg-primary/10 flex items-center justify-center text-primary font-bold text-sm sm:text-base shadow-xs">
                   {session.user.image ? (
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
@@ -115,7 +115,7 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
                 </div>
 
                 {/* First Name */}
-                <span className="font-medium text-xs sm:text-sm text-base-content max-w-[120px] truncate leading-none">
+                <span className="font-semibold text-sm sm:text-base text-base-content max-w-[130px] truncate leading-none">
                   {session.user.name?.split(" ")[0] || session.user.name}
                 </span>
 
@@ -124,7 +124,7 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 20 20"
                   fill="currentColor"
-                  className={`size-3.5 text-base-content/60 transition-transform duration-200 ${
+                  className={`size-4 text-base-content/60 transition-transform duration-200 ${
                     dropdownOpen ? "rotate-180 text-primary" : "group-hover:text-base-content"
                   }`}
                   aria-hidden="true"
@@ -159,7 +159,7 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
                       href="/profile"
                       role="menuitem"
                       onClick={() => setDropdownOpen(false)}
-                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-medium text-base-content hover:bg-base-200 transition"
+                      className="flex items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-semibold text-base-content hover:bg-base-200 transition"
                     >
                       <span className="text-base leading-none">👤</span>
                       <span>আমার প্রোফাইল</span>
@@ -172,7 +172,7 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
                         setDropdownOpen(false);
                         handleSignOut();
                       }}
-                      className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-medium text-error hover:bg-error/10 transition"
+                      className="flex w-full items-center gap-2.5 rounded-xl px-3 py-2 text-sm font-semibold text-error hover:bg-error/10 transition"
                     >
                       <span className="text-base leading-none">↩</span>
                       <span>সাইন আউট</span>
@@ -182,16 +182,16 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
               )}
             </div>
           ) : (
-            <div className="flex items-center gap-1.5 sm:gap-2">
+            <div className="flex items-center gap-2">
               <Link
                 href="/signin"
-                className="inline-flex items-center justify-center rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-medium text-base-content/80 hover:bg-base-200/80 hover:text-base-content active:scale-[0.98] transition-all duration-200"
+                className="inline-flex items-center justify-center rounded-full px-4 py-2 text-sm sm:text-base font-semibold text-base-content/80 hover:bg-base-200/80 hover:text-base-content active:scale-[0.98] transition-all duration-200"
               >
                 সাইন ইন
               </Link>
               <Link
                 href="/signup"
-                className="inline-flex items-center justify-center rounded-full bg-primary px-4 py-1.5 text-xs sm:text-sm font-semibold text-primary-content shadow-xs shadow-primary/20 hover:bg-primary/95 hover:shadow-sm active:scale-[0.98] transition-all duration-200"
+                className="inline-flex items-center justify-center rounded-full bg-primary px-5 py-2 text-sm sm:text-base font-semibold text-primary-content shadow-xs shadow-primary/20 hover:bg-primary/95 hover:shadow-sm active:scale-[0.98] transition-all duration-200"
               >
                 সাইন আপ
               </Link>
@@ -203,32 +203,20 @@ export default function Navbar({ categories = DEFAULT_CATEGORIES }: NavbarProps)
       {/* Category Navigation Bar (Second Row) */}
       <div className="border-t border-base-200/80 bg-base-100/90 backdrop-blur-xs">
         <nav aria-label="পণ্য ক্যাটাগরি" className="mx-auto w-full max-w-6xl px-4">
-          <ul className="flex items-center gap-1.5 overflow-x-auto py-2 text-xs sm:text-sm scrollbar-none">
-            <li className="shrink-0">
-              <Link
-                href="/"
-                className={`inline-flex items-center gap-1 rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 active:scale-95 ${
-                  pathname === "/"
-                    ? "bg-primary text-primary-content shadow-xs shadow-primary/20 font-semibold"
-                    : "bg-base-200/60 text-base-content/75 hover:bg-base-200 hover:text-base-content"
-                }`}
-              >
-                সব
-              </Link>
-            </li>
+          <ul className="flex items-center gap-2 overflow-x-auto py-2.5 text-sm sm:text-base scrollbar-none">
             {navCategories.map((cat) => {
               const isActive = pathname === `/category/${cat.slug}`;
               return (
                 <li key={cat.slug || cat.id} className="shrink-0">
                   <Link
                     href={`/category/${cat.slug}`}
-                    className={`inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-medium transition-all duration-200 active:scale-95 ${
+                    className={`inline-flex items-center gap-2 rounded-full px-4 py-2 text-sm sm:text-base font-semibold transition-all duration-200 active:scale-95 ${
                       isActive
-                        ? "bg-primary text-primary-content shadow-xs shadow-primary/20 font-semibold"
-                        : "bg-base-200/60 text-base-content/75 hover:bg-base-200 hover:text-base-content"
+                        ? "bg-primary text-primary-content shadow-xs shadow-primary/20"
+                        : "bg-base-200/70 text-base-content/80 hover:bg-base-200 hover:text-base-content"
                     }`}
                   >
-                    <span aria-hidden="true" className="text-sm leading-none">{cat.icon}</span>
+                    <span aria-hidden="true" className="text-base sm:text-lg leading-none">{cat.icon}</span>
                     <span>{cat.nameBn}</span>
                   </Link>
                 </li>

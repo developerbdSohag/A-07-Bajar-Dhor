@@ -32,8 +32,8 @@ export default function ProfileClient({ user }: { user: UserInfo }) {
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-6 px-4 py-8">
       {/* Header */}
       <header>
-        <h1 className="text-2xl font-bold text-base-content sm:text-3xl">আমার প্রোফাইল</h1>
-        <p className="text-sm text-base-content/70 mt-1">
+        <h1 className="text-2xl sm:text-3xl font-extrabold text-base-content tracking-tight">আমার প্রোফাইল</h1>
+        <p className="text-sm sm:text-base text-base-content/75 mt-1">
           আপনার অ্যাকাউন্টের তথ্য এখানে দেখুন এবং ব্যবস্থাপনা করুন।
         </p>
       </header>
@@ -47,11 +47,11 @@ export default function ProfileClient({ user }: { user: UserInfo }) {
         </span>
 
         <div className="min-w-0 flex-1 text-center sm:text-left">
-          <h2 className="text-xl font-bold text-base-content">{currentUser.name}</h2>
-          <p className="truncate text-sm text-base-content/70 mt-0.5">{currentUser.email}</p>
+          <h2 className="text-2xl font-bold text-base-content">{currentUser.name}</h2>
+          <p className="truncate text-sm sm:text-base text-base-content/70 mt-0.5">{currentUser.email}</p>
           <div className="mt-3 flex flex-wrap items-center justify-center gap-2 sm:justify-start">
-            <span className="badge badge-success badge-sm">সক্রিয় সদস্য</span>
-            <span className="badge badge-ghost badge-sm">বাজার দর অ্যাকাউন্ট</span>
+            <span className="badge badge-success badge-sm font-medium">সক্রিয় সদস্য</span>
+            <span className="badge badge-ghost badge-sm font-medium">বাজার দর অ্যাকাউন্ট</span>
           </div>
         </div>
 

@@ -30,13 +30,13 @@ export default function ProductGrid({ products, showSort = true }: ProductGridPr
   return (
     <div className="flex flex-col gap-4">
       {showSort && (
-        <div className="flex flex-wrap items-center justify-between gap-2">
-          <p className="text-sm text-base-content/70" aria-live="polite">
-            মোট {countBn}টি পণ্য দেখানো হচ্ছে
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p className="text-sm sm:text-base font-medium text-base-content/75" aria-live="polite">
+            মোট <span className="font-bold text-base-content">{countBn}</span>টি পণ্য দেখানো হচ্ছে
           </p>
 
-          <div className="flex items-center gap-2">
-            <label htmlFor="sort-products" className="text-xs sm:text-sm font-medium text-base-content/70">
+          <div className="flex items-center gap-2.5">
+            <label htmlFor="sort-products" className="text-sm sm:text-base font-semibold text-base-content/80">
               সাজান:
             </label>
             <div className="relative inline-flex items-center">
@@ -44,7 +44,7 @@ export default function ProductGrid({ products, showSort = true }: ProductGridPr
                 id="sort-products"
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value as SortOption)}
-                className="appearance-none rounded-full border border-base-300/80 bg-base-100 py-1.5 pl-3.5 pr-8 text-xs sm:text-sm font-medium text-base-content shadow-xs hover:border-primary/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer"
+                className="appearance-none rounded-full border border-base-300/80 bg-base-100 py-2 pl-4 pr-9 text-sm sm:text-base font-semibold text-base-content shadow-xs hover:border-primary/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer"
               >
                 <option value="default">ডিফল্ট</option>
                 <option value="price-asc">দাম: কম থেকে বেশি</option>
@@ -54,7 +54,7 @@ export default function ProductGrid({ products, showSort = true }: ProductGridPr
                 xmlns="http://www.w3.org/2000/svg"
                 viewBox="0 0 20 20"
                 fill="currentColor"
-                className="pointer-events-none absolute right-2.5 size-4 text-base-content/50"
+                className="pointer-events-none absolute right-3 size-4.5 text-base-content/50"
                 aria-hidden="true"
               >
                 <path

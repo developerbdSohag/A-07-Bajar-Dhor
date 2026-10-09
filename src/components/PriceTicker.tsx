@@ -32,18 +32,18 @@ export default function PriceTicker({ products }: PriceTickerProps) {
             return (
               <li
                 key={`${prod.slug || prod.id}-${idx}`}
-                className="flex items-center gap-1.5 border-e border-base-200 px-4 py-2 text-sm whitespace-nowrap"
+                className="flex items-center gap-2 border-e border-base-200 px-4 py-2 text-sm sm:text-base whitespace-nowrap"
               >
                 <Link
                   href={`/product/${prod.slug || prod.id}`}
                   className="flex items-center gap-1.5 hover:underline"
                 >
-                  <span aria-hidden="true">{prod.image || prod.categoryIcon}</span>
-                  <span className="font-medium">{prod.nameBn}</span>
-                  <span className="text-base-content/70">
+                  <span aria-hidden="true" className="text-base sm:text-lg">{prod.image || prod.categoryIcon}</span>
+                  <span className="font-semibold text-base-content">{prod.nameBn}</span>
+                  <span className="text-base-content/75 font-medium">
                     {todayPrice} টাকা/{unit}
                   </span>
-                  <span className={`font-semibold ${changeClass}`}>
+                  <span className={`font-bold ${changeClass}`}>
                     {changeIcon} {changePct}%
                   </span>
                 </Link>

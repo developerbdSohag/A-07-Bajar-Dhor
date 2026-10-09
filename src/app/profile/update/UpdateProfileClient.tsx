@@ -73,25 +73,25 @@ export default function UpdateProfileClient({ user }: { user: UserInfo }) {
       {/* Update Card */}
       <div className="rounded-2xl border border-base-300 bg-base-100 p-6 sm:p-8 shadow-sm">
         <header className="mb-6">
-          <h1 className="text-2xl font-bold text-base-content">তথ্য হালনাগাদ করুন</h1>
-          <p className="text-sm text-base-content/70 mt-1">
+          <h1 className="text-2xl sm:text-3xl font-extrabold text-base-content tracking-tight">তথ্য হালনাগাদ করুন</h1>
+          <p className="text-sm sm:text-base text-base-content/75 mt-1">
             আপনার অ্যাকাউন্টের নাম পরিবর্তন করতে নিচে নতুন নামটি লিখুন।
           </p>
         </header>
 
         {errorMessage && (
-          <div className="alert alert-error text-sm mb-4 py-2 rounded-lg">
+          <div className="alert alert-error text-sm mb-4 py-2 rounded-xl">
             <span>{errorMessage}</span>
           </div>
         )}
 
         <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
           <label className="form-control w-full">
-            <span className="label-text mb-1 block font-medium">নাম</span>
+            <span className="label-text mb-1 block font-semibold text-sm sm:text-base">নাম</span>
             <input
               type="text"
               autoComplete="name"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full rounded-xl"
               placeholder="যেমন: রহিম উদ্দিন"
               value={name}
               onChange={(e) => setName(e.target.value)}

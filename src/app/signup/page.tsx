@@ -104,25 +104,25 @@ function SignUpForm() {
           <span className="text-4xl select-none" aria-hidden="true">
             🛒
           </span>
-          <h1 className="mt-2 text-2xl font-bold text-base-content">সাইন আপ</h1>
-          <p className="text-sm text-base-content/70 mt-1">
+          <h1 className="mt-2 text-2xl sm:text-3xl font-extrabold text-base-content tracking-tight">সাইন আপ</h1>
+          <p className="text-sm sm:text-base text-base-content/75 mt-1">
             নতুন অ্যাকাউন্ট তৈরি করে বাজার দরে যুক্ত হন
           </p>
         </header>
 
         {errorMessage && (
-          <div className="alert alert-error text-sm mb-4 py-2 rounded-lg">
+          <div className="alert alert-error text-sm mb-4 py-2 rounded-xl">
             <span>{errorMessage}</span>
           </div>
         )}
 
         <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-4">
           <label className="form-control w-full">
-            <span className="label-text mb-1 block font-medium">নাম</span>
+            <span className="label-text mb-1 block font-semibold text-sm sm:text-base">নাম</span>
             <input
               type="text"
               autoComplete="name"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full rounded-xl"
               placeholder="যেমন: রহিম উদ্দিন"
               value={name}
               onChange={(e) => setName(e.target.value)}
@@ -131,11 +131,11 @@ function SignUpForm() {
           </label>
 
           <label className="form-control w-full">
-            <span className="label-text mb-1 block font-medium">ইমেইল</span>
+            <span className="label-text mb-1 block font-semibold text-sm sm:text-base">ইমেইল</span>
             <input
               type="email"
               autoComplete="email"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full rounded-xl"
               placeholder="you@example.com"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -144,11 +144,11 @@ function SignUpForm() {
           </label>
 
           <label className="form-control w-full">
-            <span className="label-text mb-1 block font-medium">পাসওয়ার্ড</span>
+            <span className="label-text mb-1 block font-semibold text-sm sm:text-base">পাসওয়ার্ড</span>
             <input
               type="password"
               autoComplete="new-password"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full rounded-xl"
               placeholder="কমপক্ষে ৮ অক্ষর"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
@@ -157,11 +157,11 @@ function SignUpForm() {
           </label>
 
           <label className="form-control w-full">
-            <span className="label-text mb-1 block font-medium">পাসওয়ার্ড নিশ্চিত করুন</span>
+            <span className="label-text mb-1 block font-semibold text-sm sm:text-base">পাসওয়ার্ড নিশ্চিত করুন</span>
             <input
               type="password"
               autoComplete="new-password"
-              className="input input-bordered w-full"
+              className="input input-bordered w-full rounded-xl"
               placeholder="আবার লিখুন"
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -172,7 +172,7 @@ function SignUpForm() {
           <button
             type="submit"
             disabled={loading}
-            className="w-full rounded-full bg-primary py-2.5 px-4 text-sm font-semibold text-primary-content shadow-md shadow-primary/20 hover:bg-primary/95 hover:shadow-lg hover:shadow-primary/30 active:scale-[0.98] transition-all duration-200 disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
+            className="w-full rounded-full bg-primary py-3 px-4 text-sm sm:text-base font-semibold text-primary-content shadow-md shadow-primary/20 hover:bg-primary/95 hover:shadow-lg hover:shadow-primary/30 active:scale-[0.98] transition-all duration-200 disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
           >
             {loading ? (
               <span className="loading loading-spinner loading-sm"></span>

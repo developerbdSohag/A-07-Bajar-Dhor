@@ -57,8 +57,8 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
             {categoryIcon}
           </span>
           <div>
-            <h1 className="text-2xl font-bold text-base-content">{categoryName}</h1>
-            <p className="text-sm text-base-content/70">
+            <h1 className="text-2xl sm:text-3xl font-extrabold text-base-content tracking-tight">{categoryName}</h1>
+            <p className="text-sm sm:text-base text-base-content/75 mt-0.5">
               {countBn}টি পণ্যের আজকের দাম ও পরিবর্তন
             </p>
           </div>

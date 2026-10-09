@@ -1,6 +1,5 @@
 "use client";
 
-import ChangePasswordForm from "@/components/ChangePasswordForm";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
@@ -253,36 +252,61 @@ export default function ProfileClient({ user }: { user: UserInfo }) {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto mt-2 sm:mt-0">
-          {/* Challenge C3: Update button that navigates to another route */}
+        <div className="flex flex-col sm:flex-row items-center gap-2.5 w-full sm:w-auto mt-2 sm:mt-0">
+          {/* Challenge C3: Update button that navigates to information update dashboard */}
           <Link
             href="/profile/update"
-            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-primary px-4 py-2 text-xs sm:text-sm font-semibold text-primary-content shadow-xs hover:bg-primary/95 hover:shadow-sm active:scale-[0.98] transition-all duration-200"
+            className="inline-flex items-center justify-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-semibold text-primary-content shadow-sm shadow-primary/25 hover:bg-primary/95 hover:shadow-md hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
           >
-            <span>✏️ তথ্য পরিবর্তন করুন</span>
+            <span>✏️ তথ্য হালনাগাদ করুন</span>
           </Link>
-
-          <a
-            href="#password-section"
-            className="inline-flex items-center justify-center gap-1.5 rounded-full border border-base-300 bg-base-100 px-4 py-2 text-xs sm:text-sm font-semibold text-base-content hover:bg-base-200 hover:border-primary/40 active:scale-[0.98] transition-all duration-200"
-          >
-            <span>🔑 পাসওয়ার্ড পরিবর্তন</span>
-          </a>
 
           <button
             onClick={handleSignOut}
             type="button"
-            className="inline-flex items-center justify-center gap-1.5 rounded-full border border-error/40 text-error px-4 py-2 text-xs sm:text-sm font-medium hover:bg-error/10 active:scale-[0.98] transition-all duration-200"
+            className="inline-flex items-center justify-center gap-2 rounded-full border border-error/30 bg-base-100 text-error px-5 py-2.5 text-sm font-semibold hover:bg-error/10 hover:border-error/60 active:scale-[0.98] transition-all duration-200 w-full sm:w-auto"
           >
             <span>↩ সাইন আউট</span>
           </button>
         </div>
       </div>
 
-      {/* Password Change Section */}
-      <section id="password-section" className="scroll-mt-24">
-        <ChangePasswordForm />
-      </section>
+      {/* Account Overview & Security Status Card */}
+      <div className="rounded-2xl border border-base-300 bg-base-100 p-6 sm:p-7 shadow-xs">
+        <h3 className="text-lg font-bold text-base-content mb-4 flex items-center gap-2">
+          <span>📊</span>
+          <span>অ্যাকাউন্ট ওভারভিউ ও নিরাপত্তা তথ্য</span>
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="rounded-xl border border-base-200/90 bg-base-200/40 p-4">
+            <p className="text-xs font-semibold text-base-content/60">অ্যাকাউন্ট অবস্থা</p>
+            <p className="text-base font-bold text-success mt-1 flex items-center gap-1.5">
+              <span>●</span> সক্রিয় ও নিরাপদ
+            </p>
+            <p className="text-xs text-base-content/60 mt-0.5">বাজার দর রেজিস্টার্ড ইউজার</p>
+          </div>
+
+          <div className="rounded-xl border border-base-200/90 bg-base-200/40 p-4">
+            <p className="text-xs font-semibold text-base-content/60">নিরাপত্তা স্থিতি</p>
+            <p className="text-base font-bold text-base-content mt-1 flex items-center gap-1.5">
+              <span>🛡️</span> পাসওয়ার্ড সুরক্ষিত
+            </p>
+            <p className="text-xs text-base-content/60 mt-0.5">এনক্রিপ্টেড ক্রেডেনশিয়াল</p>
+          </div>
+
+          <div className="rounded-xl border border-base-200/90 bg-base-200/40 p-4">
+            <p className="text-xs font-semibold text-base-content/60">তথ্য ব্যবস্থাপনা</p>
+            <Link
+              href="/profile/update"
+              className="text-base font-bold text-primary hover:underline mt-1 flex items-center gap-1"
+            >
+              <span>⚙️ সেটিংস ও পাসওয়ার্ড</span>
+              <span>→</span>
+            </Link>
+            <p className="text-xs text-base-content/60 mt-0.5">নাম ও পাসওয়ার্ড হালনাগাদ</p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

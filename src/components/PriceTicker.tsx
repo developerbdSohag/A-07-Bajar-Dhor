@@ -14,13 +14,19 @@ export default function PriceTicker({ products }: PriceTickerProps) {
   // Duplicate items for continuous seamless loop
   const displayItems = [...products, ...products];
 
+  // Calculate comfortable, readable scroll duration (~3.8s per product, min 110s)
+  const durationSec = Math.max(110, Math.round(products.length * 3.8));
+
   return (
     <div
       className="ticker overflow-hidden border-b border-base-300 bg-base-100"
       role="marquee"
       aria-label="আজকের দাম পরিবর্তনের তালিকা"
     >
-      <div className="ticker-track">
+      <div
+        className="ticker-track"
+        style={{ animationDuration: `${durationSec}s` }}
+      >
         <ul className="flex shrink-0 items-center">
           {displayItems.map((prod, idx) => {
             const changeClass = getChangeClass(prod.change.dir);

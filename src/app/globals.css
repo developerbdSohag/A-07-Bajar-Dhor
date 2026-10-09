@@ -16,8 +16,9 @@ body {
 /* Price ticker strip */
 .ticker-track {
   width: max-content;
-  animation: ticker-scroll 45s linear infinite;
+  animation: ticker-scroll var(--ticker-duration, 120s) linear infinite;
   display: flex;
+  will-change: transform;
 }
 
 .ticker:focus-within .ticker-track,

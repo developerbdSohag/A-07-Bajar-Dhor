@@ -172,7 +172,7 @@ function SignUpForm() {
           <button
             type="submit"
             disabled={loading}
-            className="btn btn-primary w-full mt-2"
+            className="w-full rounded-full bg-primary py-2.5 px-4 text-sm font-semibold text-primary-content shadow-md shadow-primary/20 hover:bg-primary/95 hover:shadow-lg hover:shadow-primary/30 active:scale-[0.98] transition-all duration-200 disabled:opacity-60 flex items-center justify-center gap-2 mt-2"
           >
             {loading ? (
               <span className="loading loading-spinner loading-sm"></span>
@@ -188,7 +188,7 @@ function SignUpForm() {
               type="button"
               disabled={socialLoading !== null}
               onClick={() => handleSocialLogin("google")}
-              className="btn btn-outline flex-1 text-xs sm:text-sm"
+              className="flex-1 inline-flex items-center justify-center gap-2 rounded-full border border-base-300/80 bg-base-100 py-2.5 px-3 text-xs sm:text-sm font-medium text-base-content shadow-2xs hover:bg-base-200/60 hover:border-base-content/20 active:scale-[0.98] transition-all duration-200"
             >
               {socialLoading === "google" ? (
                 <span className="loading loading-spinner loading-xs"></span>
@@ -219,7 +219,7 @@ function SignUpForm() {
               type="button"
               disabled={socialLoading !== null}
               onClick={() => handleSocialLogin("github")}
-              className="btn btn-outline flex-1 text-xs sm:text-sm"
+              className="flex-1 inline-flex items-center justify-center gap-2 rounded-full border border-base-300/80 bg-base-100 py-2.5 px-3 text-xs sm:text-sm font-medium text-base-content shadow-2xs hover:bg-base-200/60 hover:border-base-content/20 active:scale-[0.98] transition-all duration-200"
             >
               {socialLoading === "github" ? (
                 <span className="loading loading-spinner loading-xs"></span>

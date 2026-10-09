@@ -8,8 +8,8 @@ import ToastProvider from "@/components/ToastProvider";
 import { getAllCategories, getAllProducts } from "@/lib/api";
 
 const hindSiliguri = Hind_Siliguri({
-  subsets: ["bengali"],
-  weight: ["400", "500", "600", "700"],
+  subsets: ["latin", "bengali"],
+  weight: ["300", "400", "500", "600", "700"],
   variable: "--font-hind-siliguri",
   display: "swap",
 });

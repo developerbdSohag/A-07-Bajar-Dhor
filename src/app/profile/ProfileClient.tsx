@@ -55,21 +55,21 @@ export default function ProfileClient({ user }: { user: UserInfo }) {
           </div>
         </div>
 
-        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto">
+        <div className="flex flex-col sm:flex-row gap-2 w-full sm:w-auto mt-2 sm:mt-0">
           {/* Challenge C3: Update button that navigates to another route */}
           <Link
             href="/profile/update"
-            className="btn btn-primary btn-sm sm:btn-md"
+            className="inline-flex items-center justify-center gap-1.5 rounded-full bg-primary px-4 py-2 text-xs sm:text-sm font-semibold text-primary-content shadow-xs hover:bg-primary/95 hover:shadow-sm active:scale-[0.98] transition-all duration-200"
           >
-            ✏️ তথ্য হালনাগাদ করুন
+            <span>✏️ তথ্য পরিবর্তন করুন</span>
           </Link>
 
           <button
             onClick={handleSignOut}
             type="button"
-            className="btn btn-outline btn-error btn-sm sm:btn-md"
+            className="inline-flex items-center justify-center gap-1.5 rounded-full border border-error/40 text-error px-4 py-2 text-xs sm:text-sm font-medium hover:bg-error/10 active:scale-[0.98] transition-all duration-200"
           >
-            ↩︎ সাইন আউট
+            <span>↩ সাইন আউট</span>
           </button>
         </div>
       </div>

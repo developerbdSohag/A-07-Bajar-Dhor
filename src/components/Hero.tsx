@@ -25,9 +25,13 @@ export default function Hero() {
             চাল, ডাল, তেল, সবজি, মাছ, মাংস, ডিম ও মসলার দাম — বাজারভিত্তিক বিস্তারিত, গড়,
             সর্বনিম্ন-সর্বাধিক এবং দামের পরিবর্তন এক জায়গায়।
           </p>
-          <div className="mt-5 flex flex-wrap gap-2">
-            <a href="#সব-পণ্য" className="btn btn-primary">
-              সব পণ্য দেখুন
+          <div className="mt-6 flex flex-wrap gap-2">
+            <a
+              href="#সব-পণ্য"
+              className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-content shadow-md shadow-primary/20 hover:bg-primary/95 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.98] transition-all duration-200"
+            >
+              <span>সব পণ্য দেখুন</span>
+              <span aria-hidden="true">↓</span>
             </a>
           </div>
         </div>

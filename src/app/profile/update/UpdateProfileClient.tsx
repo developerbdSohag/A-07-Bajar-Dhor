@@ -109,11 +109,11 @@ export default function UpdateProfileClient({ user }: { user: UserInfo }) {
             />
           </label>
 
-          <div className="flex flex-col sm:flex-row gap-3 mt-2">
+          <div className="flex flex-col sm:flex-row gap-3 mt-4">
             <button
               type="submit"
               disabled={loading}
-              className="btn btn-primary flex-1"
+              className="inline-flex items-center justify-center rounded-full bg-primary py-2.5 px-6 text-sm font-semibold text-primary-content shadow-xs hover:bg-primary/95 hover:shadow-sm active:scale-[0.98] transition-all duration-200 disabled:opacity-60 flex-1"
             >
               {loading ? (
                 <span className="loading loading-spinner loading-sm"></span>
@@ -121,7 +121,10 @@ export default function UpdateProfileClient({ user }: { user: UserInfo }) {
                 "তথ্য আপডেট করুন"
               )}
             </button>
-            <Link href="/profile" className="btn btn-ghost sm:w-auto">
+            <Link
+              href="/profile"
+              className="inline-flex items-center justify-center rounded-full px-5 py-2.5 text-sm font-medium text-base-content/80 hover:bg-base-200 active:scale-[0.98] transition-all duration-200 sm:w-auto"
+            >
               বাতিল করুন
             </Link>
           </div>

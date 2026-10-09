@@ -9,7 +9,16 @@ const config: Config = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["var(--font-hind-siliguri)", "Hind Siliguri", "sans-serif"],
+        sans: [
+          "var(--font-hind-siliguri)",
+          "Hind Siliguri",
+          "Inter",
+          "-apple-system",
+          "BlinkMacSystemFont",
+          "Segoe UI",
+          "Roboto",
+          "sans-serif",
+        ],
       },
     },
   },

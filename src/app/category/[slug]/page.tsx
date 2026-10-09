@@ -34,7 +34,10 @@ export default async function CategoryPage({ params }: CategoryPageProps) {
         <p className="max-w-md text-base-content/70">
           এই ক্যাটাগরিতে কোনো পণ্য নেই অথবা ক্যাটাগরিটি বিদ্যমান নয়।
         </p>
-        <Link href="/" className="btn btn-primary mt-2">
+        <Link
+          href="/"
+          className="inline-flex items-center gap-2 rounded-full bg-primary px-6 py-2.5 text-sm font-semibold text-primary-content shadow-xs shadow-primary/20 hover:bg-primary/95 hover:shadow-sm active:scale-[0.98] transition-all duration-200 mt-2"
+        >
           হোম পেজে ফিরে যান
         </Link>
       </div>

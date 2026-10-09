@@ -36,20 +36,33 @@ export default function ProductGrid({ products, showSort = true }: ProductGridPr
           </p>
 
           <div className="flex items-center gap-2">
-            <label htmlFor="sort-products" className="text-sm font-medium text-base-content/70">
-              সাজান
+            <label htmlFor="sort-products" className="text-xs sm:text-sm font-medium text-base-content/70">
+              সাজান:
             </label>
-            <div className="relative">
+            <div className="relative inline-flex items-center">
               <select
                 id="sort-products"
                 value={sortOption}
                 onChange={(e) => setSortOption(e.target.value as SortOption)}
-                className="select select-bordered select-sm pe-8 cursor-pointer font-medium"
+                className="appearance-none rounded-full border border-base-300/80 bg-base-100 py-1.5 pl-3.5 pr-8 text-xs sm:text-sm font-medium text-base-content shadow-xs hover:border-primary/50 focus:border-primary focus:outline-none focus:ring-2 focus:ring-primary/20 transition-all cursor-pointer"
               >
                 <option value="default">ডিফল্ট</option>
                 <option value="price-asc">দাম: কম থেকে বেশি</option>
                 <option value="price-desc">দাম: বেশি থেকে কম</option>
               </select>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 20 20"
+                fill="currentColor"
+                className="pointer-events-none absolute right-2.5 size-4 text-base-content/50"
+                aria-hidden="true"
+              >
+                <path
+                  fillRule="evenodd"
+                  d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z"
+                  clipRule="evenodd"
+                />
+              </svg>
             </div>
           </div>
         </div>

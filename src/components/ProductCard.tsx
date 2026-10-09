@@ -23,36 +23,36 @@ export default function ProductCard({ product }: ProductCardProps) {
   return (
     <Link
       href={`/product/${product.slug || product.id}`}
-      className="card border border-base-300 bg-base-100 transition duration-200 hover:border-primary hover:shadow-md focus-visible:outline-2 focus-visible:outline-primary block"
+      className="group block rounded-2xl border border-base-200/90 bg-base-100 p-4 shadow-xs hover:border-primary/40 hover:shadow-md hover:shadow-base-content/5 hover:-translate-y-0.5 active:translate-y-0 active:scale-[0.99] transition-all duration-200 focus-visible:outline-2 focus-visible:outline-primary"
     >
-      <div className="card-body gap-3 p-4">
+      <div className="flex flex-col gap-3">
         {/* Top: Emoji + Title + Unit */}
         <div className="flex items-start gap-3">
           <span
             aria-hidden="true"
-            className="grid size-12 shrink-0 place-items-center rounded-xl bg-base-200 text-2xl select-none"
+            className="grid size-12 shrink-0 place-items-center rounded-xl bg-base-200/70 text-2xl select-none group-hover:scale-105 transition-transform duration-200"
           >
             {product.image || product.categoryIcon || "🛒"}
           </span>
           <div className="min-w-0 flex-1">
-            <h3 className="truncate text-base font-semibold text-base-content">
+            <h3 className="truncate text-base font-semibold text-base-content group-hover:text-primary transition-colors">
               {product.nameBn}
             </h3>
-            <p className="text-xs text-base-content/60">প্রতি {unit}</p>
+            <p className="text-xs text-base-content/60 mt-0.5">প্রতি {unit}</p>
           </div>
         </div>
 
         {/* Bottom: Price Row + Change Badge */}
-        <div className="flex items-end justify-between gap-2 pt-1 border-t border-base-200/60">
+        <div className="flex items-end justify-between gap-2 pt-2 border-t border-base-200/70">
           <div>
             <p className="text-xs text-base-content/60">আজকের দাম</p>
-            <p className="text-xl font-bold text-base-content">
+            <p className="text-xl font-bold text-base-content leading-tight">
               {todayPrice}{" "}
-              <span className="text-sm font-medium text-base-content/70">টাকা</span>
+              <span className="text-xs font-normal text-base-content/60">টাকা</span>
             </p>
           </div>
           <span
-            className={`inline-flex items-center gap-1 rounded-full bg-base-200 px-2 py-1 text-xs font-semibold ${changeClass}`}
+            className={`inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-semibold shadow-xs ${changeClass}`}
             title={`গতকালের তুলনায় ${changeText}`}
           >
             <span aria-hidden="true">{changeIcon}</span>

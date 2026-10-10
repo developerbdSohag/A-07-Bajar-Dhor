@@ -5,42 +5,35 @@ import fallbackCategoriesData from "@/data/categories.json";
 const fallbackProducts: Product[] = fallbackProductsData as unknown as Product[];
 const fallbackCategories: Category[] = fallbackCategoriesData as unknown as Category[];
 
-const BASE_URL_1 = process.env.NEXT_PUBLIC_BASE_URL_1 || "https://api.api-store.workers.dev/api/bazardor";
-const BASE_URL_2 = process.env.NEXT_PUBLIC_BASE_URL_2 || "https://api.abcz.workers.dev/api/bazardor";
+const API_BASE_URLS = [
+  process.env.NEXT_PUBLIC_MAIN_API_URL || "https://openapi.programming-hero.com/api/bazardor",
+  process.env.NEXT_PUBLIC_BASE_URL_1 || "https://api.api-store.workers.dev/api/bazardor",
+  process.env.NEXT_PUBLIC_BASE_URL_2 || "https://api.abcz.workers.dev/api/bazardor",
+];
 
 async function fetchFromApi<T>(endpoint: string, options?: RequestInit): Promise<T> {
-  const url1 = `${BASE_URL_1}${endpoint}`;
-  try {
-    const res = await fetch(url1, {
-      ...options,
-      next: { revalidate: 60 },
-    });
-    if (res.ok) {
-      const contentType = res.headers.get("content-type") || "";
-      if (contentType.includes("application/json")) {
-        return (await res.json()) as T;
+  let lastError: unknown = null;
+
+  for (const baseUrl of API_BASE_URLS) {
+    const url = `${baseUrl}${endpoint}`;
+    try {
+      const res = await fetch(url, {
+        ...options,
+        next: { revalidate: 60 },
+      });
+      if (res.ok) {
+        const contentType = res.headers.get("content-type") || "";
+        if (contentType.includes("application/json")) {
+          return (await res.json()) as T;
+        }
       }
+    } catch (err) {
+      lastError = err;
+      console.warn(`Fetch from ${baseUrl} failed for ${endpoint}, checking next API:`, err);
     }
-  } catch (err) {
-    console.warn(`Fetch from BASE_URL_1 failed for ${endpoint}, falling back to BASE_URL_2`, err);
   }
 
-  const url2 = `${BASE_URL_2}${endpoint}`;
-  try {
-    const res = await fetch(url2, {
-      ...options,
-      next: { revalidate: 60 },
-    });
-    if (res.ok) {
-      const contentType = res.headers.get("content-type") || "";
-      if (contentType.includes("application/json")) {
-        return (await res.json()) as T;
-      }
-    }
-    throw new Error(`Failed to fetch from both APIs for ${endpoint}. Status: ${res.status}`);
-  } catch (err) {
-    throw err;
-  }
+  throw new Error(`Failed to fetch from all 3 APIs for ${endpoint}. Last error: ${String(lastError)}`);
 }
 
 /**

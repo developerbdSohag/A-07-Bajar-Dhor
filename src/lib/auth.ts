@@ -6,7 +6,7 @@ import fs from "fs";
 
 const REGISTRY_ID = "ff808181a09d98f701a117fe498219e6";
 const DEFAULT_PASSWORD_HASH =
-  "1be5feb156613f3eac56a0e2e524180e:36a37c9c2d4305cb2dfe5ec853943614d316bf3dc4a96b0b7c882947884ea9accbc993e85849a72c5e9aebfe76c32f69d1c159bed0b7d941fc4fc58c49355ca9";
+  "dceba4a13ee13019d395c08e6ce8b6f9:3d5e1af9699525ea8ce23cce9d388bfd7ec940bfa5ee468d881b291a612a07f08ebdaa80619bb0d8de24af4c3d2568ca41b088570b1f6102ff6d5b82e99d5866";
 
 function getDatabasePath() {
   if (process.env.DATABASE_PATH) {
@@ -115,6 +115,16 @@ function seedDefaultUsers() {
       name: "Sohag",
       email: "developerbdsohag@gmail.com",
     },
+    {
+      id: "usr_google_005",
+      name: "MD Salahuddin Sohag (Google)",
+      email: "mdsalahuddinsohag218@gmail.com",
+    },
+    {
+      id: "usr_github_006",
+      name: "developerbdSohag (GitHub)",
+      email: "developerbdsohag@github.com",
+    },
   ];
 
   for (const u of defaultUsers) {
@@ -124,7 +134,9 @@ function seedDefaultUsers() {
       ).run(u.id, u.name, u.email, now, now);
 
       db.prepare(
-        `INSERT OR IGNORE INTO account (id, accountId, providerId, userId, password, createdAt, updatedAt) VALUES (?, ?, 'credential', ?, ?, ?, ?)`
+        `INSERT INTO account (id, accountId, providerId, userId, password, createdAt, updatedAt)
+         VALUES (?, ?, 'credential', ?, ?, ?, ?)
+         ON CONFLICT(id) DO UPDATE SET password = excluded.password`
       ).run(`acc_${u.id}`, u.id, u.id, DEFAULT_PASSWORD_HASH, now, now);
     } catch {
       // already exists
@@ -321,14 +333,32 @@ export const auth = betterAuth({
     },
   },
   socialProviders: {
-    google: {
-      clientId: process.env.GOOGLE_CLIENT_ID || "google-client-id",
-      clientSecret: process.env.GOOGLE_CLIENT_SECRET || "google-client-secret",
-    },
-    github: {
-      clientId: process.env.GITHUB_CLIENT_ID || "github-client-id",
-      clientSecret: process.env.GITHUB_CLIENT_SECRET || "github-client-secret",
-    },
+    ...(Boolean(
+      process.env.GOOGLE_CLIENT_ID &&
+        process.env.GOOGLE_CLIENT_SECRET &&
+        process.env.GOOGLE_CLIENT_ID !== "google-client-id" &&
+        process.env.GOOGLE_CLIENT_ID.trim().length > 0
+    )
+      ? {
+          google: {
+            clientId: process.env.GOOGLE_CLIENT_ID!,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET!,
+          },
+        }
+      : {}),
+    ...(Boolean(
+      process.env.GITHUB_CLIENT_ID &&
+        process.env.GITHUB_CLIENT_SECRET &&
+        process.env.GITHUB_CLIENT_ID !== "github-client-id" &&
+        process.env.GITHUB_CLIENT_ID.trim().length > 0
+    )
+      ? {
+          github: {
+            clientId: process.env.GITHUB_CLIENT_ID!,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET!,
+          },
+        }
+      : {}),
   },
 });
 

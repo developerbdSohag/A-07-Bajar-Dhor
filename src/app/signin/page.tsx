@@ -2,11 +2,13 @@
 
 import { Suspense, useEffect, useState } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import toast from "react-hot-toast";
 import { signIn } from "@/lib/auth-client";
+import SocialAuthModal from "@/components/SocialAuthModal";
 
 function SignInForm() {
+  const router = useRouter();
   const searchParams = useSearchParams();
   const callbackUrl = searchParams.get("callbackURL") || "/";
   const isProtected = searchParams.get("protected") === "1";
@@ -18,6 +20,11 @@ function SignInForm() {
   const [loading, setLoading] = useState(false);
   const [socialLoading, setSocialLoading] = useState<string | null>(null);
   const [errorMessage, setErrorMessage] = useState("");
+  const [socialModal, setSocialModal] = useState<{
+    open: boolean;
+    provider: "google" | "github";
+    redirectUri?: string;
+  }>({ open: false, provider: "google" });
 
   useEffect(() => {
     if (initialEmail && !email) {
@@ -80,32 +87,103 @@ function SignInForm() {
     }
   };
 
-  const handleSocialLogin = async (provider: "google" | "github") => {
+  const handleDemoSignIn = async (provider: "google" | "github") => {
     setSocialLoading(provider);
+    const demoEmail =
+      provider === "google"
+        ? "mdsalahuddinsohag218@gmail.com"
+        : "developerbdsohag@github.com";
+
     try {
-      const targetUrl = callbackUrl.includes("?")
-        ? `${callbackUrl}&auth=signin`
-        : `${callbackUrl}?auth=signin`;
       try {
         sessionStorage.setItem(
           "bazardor_toast",
           JSON.stringify({ type: "success", message: "সফল ভাবে সাইন ইন হয়েছে" })
         );
       } catch {}
+
+      const res = await signIn.email({
+        email: demoEmail,
+        password: "12345678",
+        callbackURL: callbackUrl,
+      });
+
+      if (res?.error) {
+        toast.error("সাইন ইন করতে সমস্যা হয়েছে। অনুগ্রহ করে আবার চেষ্টা করুন।");
+      } else {
+        router.push(callbackUrl);
+      }
+    } catch (err: any) {
+      toast.error(err?.message || "সাইন ইন করতে সমস্যা হয়েছে।");
+    } finally {
+      setSocialLoading(null);
+      setSocialModal((prev) => ({ ...prev, open: false }));
+    }
+  };
+
+  const handleSocialLogin = async (provider: "google" | "github") => {
+    setSocialLoading(provider);
+    try {
+      const targetUrl = callbackUrl.includes("?")
+        ? `${callbackUrl}&auth=signin`
+        : `${callbackUrl}?auth=signin`;
+
+      let statusData: {
+        google?: boolean;
+        github?: boolean;
+        callbacks?: { google: string; github: string };
+      } | null = null;
+
+      try {
+        const statusRes = await fetch("/api/auth/social-status");
+        if (statusRes.ok) {
+          statusData = await statusRes.json();
+        }
+      } catch {}
+
+      const isConfigured =
+        provider === "google" ? statusData?.google : statusData?.github;
+
+      if (!isConfigured) {
+        setSocialModal({
+          open: true,
+          provider,
+          redirectUri:
+            provider === "google"
+              ? statusData?.callbacks?.google
+              : statusData?.callbacks?.github,
+        });
+        setSocialLoading(null);
+        return;
+      }
+
+      try {
+        sessionStorage.setItem(
+          "bazardor_toast",
+          JSON.stringify({ type: "success", message: "সফল ভাবে সাইন ইন হয়েছে" })
+        );
+      } catch {}
+
       const res = await signIn.social({
         provider,
         callbackURL: targetUrl,
       });
 
       if (res?.error) {
-        toast.error(
-          `${provider === "google" ? "Google" : "GitHub"} লগইন কনফিগার করা নেই। অনুগ্রহ করে ইমেইল ব্যবহার করুন।`
-        );
+        setSocialModal({
+          open: true,
+          provider,
+          redirectUri:
+            provider === "google"
+              ? statusData?.callbacks?.google
+              : statusData?.callbacks?.github,
+        });
       }
     } catch {
-      toast.error(
-        `${provider === "google" ? "Google" : "GitHub"} দিয়ে সাইন ইন করতে সমস্যা হয়েছে।`
-      );
+      setSocialModal({
+        open: true,
+        provider,
+      });
     } finally {
       setSocialLoading(null);
     }
@@ -245,6 +323,15 @@ function SignInForm() {
           </p>
         </form>
       </div>
+
+      <SocialAuthModal
+        isOpen={socialModal.open}
+        onClose={() => setSocialModal((prev) => ({ ...prev, open: false }))}
+        provider={socialModal.provider}
+        onDemoSignIn={handleDemoSignIn}
+        loading={socialLoading !== null}
+        redirectUri={socialModal.redirectUri}
+      />
     </div>
   );
 }
